@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="5" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="3.285690">
+    <testsuite name="Unit" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="2.907468">
+      <testsuite name="Tests\Unit\CustomerType\CustomerTypeTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerType\CustomerTypeTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="2.276594">
+        <testcase name="test_it_has_many_customers" class="Tests\Unit\CustomerType\CustomerTypeTest" classname="Tests.Unit.CustomerType.CustomerTypeTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerType\CustomerTypeTest.php" line="19" assertions="1" time="2.276594"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\Customer\CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.629015">
+        <testcase name="test_it_has_customer_type" class="Tests\Unit\Customer\CustomerTest" classname="Tests.Unit.Customer.CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" line="19" assertions="1" time="0.315643"/>
+        <testcase name="test_it_belongs_to_a_customer_type" class="Tests\Unit\Customer\CustomerTest" classname="Tests.Unit.Customer.CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" line="33" assertions="1" time="0.313372"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\ExampleTest" file="C:\laragon\www\ummuzayn\tests\Unit\ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.001859">
+        <testcase name="testBasicTest" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" file="C:\laragon\www\ummuzayn\tests\Unit\ExampleTest.php" line="14" assertions="1" time="0.001859"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Feature" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.378222">
+      <testsuite name="Tests\Feature\ExampleTest" file="C:\laragon\www\ummuzayn\tests\Feature\ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.378222">
+        <testcase name="testBasicTest" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" file="C:\laragon\www\ummuzayn\tests\Feature\ExampleTest.php" line="15" assertions="1" time="0.378222"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

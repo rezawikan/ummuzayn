@@ -18,7 +18,7 @@ class Customer extends Model
 
 
     /**
-     * Get the phone record associated with the customer.
+     * Get the customer type record associated with the customer.
      */
     public function type()
     {
