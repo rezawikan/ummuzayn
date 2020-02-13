@@ -17,7 +17,7 @@ class CustomerType extends Model
     ];
 
     /**
-     * Get the comments for the blog post.
+     * Get the customers for the customer type.
      */
     public function customers()
     {
