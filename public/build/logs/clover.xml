@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1581242211">
-  <project timestamp="1581242211">
+<coverage generated="1581726183">
+  <project timestamp="1581726183">
     <package name="App\Console">
       <file name="C:\laragon\www\ummuzayn\app\Console\Kernel.php">
         <class name="App\Console\Kernel" namespace="App\Console">
@@ -8,10 +8,10 @@
         </class>
         <line num="25" type="method" name="schedule" visibility="protected" complexity="1" crap="2" count="0"/>
         <line num="29" type="stmt" count="0"/>
-        <line num="36" type="method" name="commands" visibility="protected" complexity="1" crap="1" count="4"/>
-        <line num="38" type="stmt" count="4"/>
-        <line num="40" type="stmt" count="4"/>
-        <line num="41" type="stmt" count="4"/>
+        <line num="36" type="method" name="commands" visibility="protected" complexity="1" crap="1" count="15"/>
+        <line num="38" type="stmt" count="15"/>
+        <line num="40" type="stmt" count="15"/>
+        <line num="41" type="stmt" count="15"/>
         <metrics loc="42" ncloc="20" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="6" coveredelements="4"/>
       </file>
     </package>
@@ -255,13 +255,39 @@
       </file>
     </package>
     <package name="App\Models">
+      <file name="C:\laragon\www\ummuzayn\app\Models\City.php">
+        <class name="App\Models\City" namespace="App\Models">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+        </class>
+        <line num="26" type="method" name="subdistricts" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="28" type="stmt" count="1"/>
+        <line num="34" type="method" name="province" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="36" type="stmt" count="1"/>
+        <metrics loc="38" ncloc="27" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+      </file>
       <file name="C:\laragon\www\ummuzayn\app\Models\Customer.php">
         <class name="App\Models\Customer" namespace="App\Models">
-          <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+          <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
         </class>
         <line num="23" type="method" name="type" visibility="public" complexity="1" crap="1" count="2"/>
         <line num="25" type="stmt" count="2"/>
-        <metrics loc="27" ncloc="19" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+        <line num="31" type="method" name="customer_addresses" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="33" type="stmt" count="2"/>
+        <line num="39" type="method" name="default_address" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <metrics loc="43" ncloc="29" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
+      </file>
+      <file name="C:\laragon\www\ummuzayn\app\Models\CustomerAddress.php">
+        <class name="App\Models\CustomerAddress" namespace="App\Models">
+          <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
+        </class>
+        <line num="28" type="method" name="subdistrict" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="36" type="method" name="customer" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="38" type="stmt" count="1"/>
+        <line num="47" type="method" name="scopeCurrentAddress" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <metrics loc="51" ncloc="34" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="6" coveredelements="6"/>
       </file>
       <file name="C:\laragon\www\ummuzayn\app\Models\CustomerType.php">
         <class name="App\Models\CustomerType" namespace="App\Models">
@@ -270,6 +296,26 @@
         <line num="22" type="method" name="customers" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="24" type="stmt" count="1"/>
         <metrics loc="26" ncloc="18" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      </file>
+      <file name="C:\laragon\www\ummuzayn\app\Models\Province.php">
+        <class name="App\Models\Province" namespace="App\Models">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+        </class>
+        <line num="23" type="method" name="subdistricts" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="25" type="stmt" count="1"/>
+        <line num="31" type="method" name="cities" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="33" type="stmt" count="2"/>
+        <metrics loc="35" ncloc="24" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+      </file>
+      <file name="C:\laragon\www\ummuzayn\app\Models\Subdistrict.php">
+        <class name="App\Models\Subdistrict" namespace="App\Models">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+        </class>
+        <line num="24" type="method" name="city" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="26" type="stmt" count="1"/>
+        <line num="32" type="method" name="customer_addresses" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="34" type="stmt" count="1"/>
+        <metrics loc="36" ncloc="25" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
       </file>
       <file name="C:\laragon\www\ummuzayn\app\Models\User.php">
         <class name="App\Models\User" namespace="App\Models">
@@ -287,19 +333,19 @@
         <class name="App\Providers\AppServiceProvider" namespace="App\Providers">
           <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
         </class>
-        <line num="14" type="method" name="register" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="17" type="stmt" count="4"/>
-        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="27" type="stmt" count="4"/>
+        <line num="14" type="method" name="register" visibility="public" complexity="1" crap="1" count="15"/>
+        <line num="17" type="stmt" count="15"/>
+        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="15"/>
+        <line num="27" type="stmt" count="15"/>
         <metrics loc="28" ncloc="14" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
       </file>
       <file name="C:\laragon\www\ummuzayn\app\Providers\AuthServiceProvider.php">
         <class name="App\Providers\AuthServiceProvider" namespace="App\Providers">
           <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
         </class>
-        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="26" type="stmt" count="4"/>
-        <line num="29" type="stmt" count="4"/>
+        <line num="24" type="method" name="boot" visibility="public" complexity="1" crap="1" count="15"/>
+        <line num="26" type="stmt" count="15"/>
+        <line num="29" type="stmt" count="15"/>
         <metrics loc="30" ncloc="16" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
       </file>
       <file name="C:\laragon\www\ummuzayn\app\Providers\BroadcastServiceProvider.php">
@@ -316,36 +362,36 @@
         <class name="App\Providers\EventServiceProvider" namespace="App\Providers">
           <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
         </class>
-        <line num="28" type="method" name="boot" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="30" type="stmt" count="4"/>
-        <line num="33" type="stmt" count="4"/>
+        <line num="28" type="method" name="boot" visibility="public" complexity="1" crap="1" count="15"/>
+        <line num="30" type="stmt" count="15"/>
+        <line num="33" type="stmt" count="15"/>
         <metrics loc="34" ncloc="22" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="3" coveredelements="3"/>
       </file>
       <file name="C:\laragon\www\ummuzayn\app\Providers\RouteServiceProvider.php">
         <class name="App\Providers\RouteServiceProvider" namespace="App\Providers">
           <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="18" coveredelements="18"/>
         </class>
-        <line num="31" type="method" name="boot" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="35" type="stmt" count="4"/>
-        <line num="36" type="stmt" count="4"/>
-        <line num="43" type="method" name="map" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="45" type="stmt" count="4"/>
-        <line num="47" type="stmt" count="4"/>
-        <line num="50" type="stmt" count="4"/>
-        <line num="59" type="method" name="mapWebRoutes" visibility="protected" complexity="1" crap="1" count="4"/>
-        <line num="61" type="stmt" count="4"/>
-        <line num="62" type="stmt" count="4"/>
-        <line num="63" type="stmt" count="4"/>
-        <line num="64" type="stmt" count="4"/>
-        <line num="73" type="method" name="mapApiRoutes" visibility="protected" complexity="1" crap="1" count="4"/>
-        <line num="75" type="stmt" count="4"/>
-        <line num="76" type="stmt" count="4"/>
-        <line num="77" type="stmt" count="4"/>
-        <line num="78" type="stmt" count="4"/>
-        <line num="79" type="stmt" count="4"/>
+        <line num="31" type="method" name="boot" visibility="public" complexity="1" crap="1" count="15"/>
+        <line num="35" type="stmt" count="15"/>
+        <line num="36" type="stmt" count="15"/>
+        <line num="43" type="method" name="map" visibility="public" complexity="1" crap="1" count="15"/>
+        <line num="45" type="stmt" count="15"/>
+        <line num="47" type="stmt" count="15"/>
+        <line num="50" type="stmt" count="15"/>
+        <line num="59" type="method" name="mapWebRoutes" visibility="protected" complexity="1" crap="1" count="15"/>
+        <line num="61" type="stmt" count="15"/>
+        <line num="62" type="stmt" count="15"/>
+        <line num="63" type="stmt" count="15"/>
+        <line num="64" type="stmt" count="15"/>
+        <line num="73" type="method" name="mapApiRoutes" visibility="protected" complexity="1" crap="1" count="15"/>
+        <line num="75" type="stmt" count="15"/>
+        <line num="76" type="stmt" count="15"/>
+        <line num="77" type="stmt" count="15"/>
+        <line num="78" type="stmt" count="15"/>
+        <line num="79" type="stmt" count="15"/>
         <metrics loc="80" ncloc="40" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="18" coveredelements="18"/>
       </file>
     </package>
-    <metrics files="30" loc="1232" ncloc="674" classes="21" methods="52" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="93" coveredstatements="25" elements="145" coveredelements="36"/>
+    <metrics files="34" loc="1408" ncloc="794" classes="25" methods="63" coveredmethods="22" conditionals="0" coveredconditionals="0" statements="104" coveredstatements="36" elements="167" coveredelements="58"/>
   </project>
 </coverage>

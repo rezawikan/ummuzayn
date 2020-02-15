@@ -1,19 +1,27 @@
 
 
-Code Coverage Report:    
-  2020-02-09 09:56:51    
-                         
- Summary:                
-  Classes: 28.57% (6/21) 
-  Methods: 21.15% (11/52)
-  Lines:   26.88% (25/93)
+Code Coverage Report:     
+  2020-02-15 00:23:03     
+                          
+ Summary:                 
+  Classes: 40.00% (10/25) 
+  Methods: 34.92% (22/63) 
+  Lines:   34.62% (36/104)
 
 \App\Console::App\Console\Kernel
   Methods:  50.00% ( 1/ 2)   Lines:  75.00% (  3/  4)
+\App\Models::App\Models\City
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
 \App\Models::App\Models\Customer
-  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+  Methods: 100.00% ( 3/ 3)   Lines: 100.00% (  3/  3)
+\App\Models::App\Models\CustomerAddress
+  Methods: 100.00% ( 3/ 3)   Lines: 100.00% (  3/  3)
 \App\Models::App\Models\CustomerType
   Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+\App\Models::App\Models\Province
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
+\App\Models::App\Models\Subdistrict
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
 \App\Providers::App\Providers\AppServiceProvider
   Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
 \App\Providers::App\Providers\AuthServiceProvider

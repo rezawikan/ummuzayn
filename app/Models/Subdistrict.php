@@ -27,10 +27,10 @@ class Subdistrict extends Model
     }
 
     /**
-    * Get the customers for the subdistrict.
+    * Get the customer addresses for the subdistrict.
     */
-    public function customers()
+    public function customer_addresses()
     {
-        return $this->hasMany(Customer::class);
+        return $this->hasMany(CustomerAddress::class);
     }
 }

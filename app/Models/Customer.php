@@ -38,17 +38,6 @@ class Customer extends Model
     */
     public function default_address()
     {
-        return $this->customer_addresses()->default();
-    }
-
-    /**
-    * Scope a query to only include default value.
-    *
-    * @param  \Illuminate\Database\Eloquent\Builder  $query
-    * @return \Illuminate\Database\Eloquent\Builder
-    */
-    public function scopeDefault($query)
-    {
-        return $query->where('default', 1);
+        return $this->customer_addresses()->currentAddress()->get();
     }
 }

@@ -37,4 +37,15 @@ class CustomerAddress extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    /**
+    * Scope a query to only include default value.
+    *
+    * @param  \Illuminate\Database\Eloquent\Builder  $query
+    * @return \Illuminate\Database\Eloquent\Builder
+    */
+    public function scopeCurrentAddress($query)
+    {
+        return $query->where('default', 1);
+    }
 }
