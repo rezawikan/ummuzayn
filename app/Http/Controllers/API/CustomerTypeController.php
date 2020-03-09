@@ -2,41 +2,65 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Resources\API\Customer\CustomerTypeResource;
 use App\Http\Controllers\Controller;
 use App\Models\CustomerType;
 use Illuminate\Http\Request;
+use App\Http\Requests\CustomerTypeStoreRequest;
+use App\Http\Requests\CustomerTypeUpdateRequest;
 
 class CustomerTypeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List query scope
      *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function index()
+    protected function scopes()
     {
-        //
+        return [
+          // 'slug'    => 'asd',
+          // 'name'    => new NameScope(),
+          // 'popular' => new PopularScope(),
+          // 'status'  => new StatusScope()
+        ];
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
+     * Display a listing of the resource.
+     * @param \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index(Request $request)
     {
-        //
+        $types = CustomerType::Ordered('type')
+        ->withScopes(
+            $this->scopes()
+        )
+        ->paginate(12)
+        ->appends(
+            $request->except('page')
+        );
+
+        return CustomerTypeResource::collection($types);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CustomerTypeStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerTypeStoreRequest $request)
     {
-        //
+        $type = CustomerType::create(
+            $request->only([
+            'type',
+            'slug'
+          ])
+        );
+
+        return new CustomerTypeResource($type);
     }
 
     /**
@@ -47,30 +71,27 @@ class CustomerTypeController extends Controller
      */
     public function show(CustomerType $customerType)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\CustomerType  $customerType
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CustomerType $customerType)
-    {
-        //
+        return new CustomerTypeResource($customerType);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CustomerTypeUpdateRequest  $request
      * @param  \App\Models\CustomerType  $customerType
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, CustomerType $customerType)
     {
-        //
+        $customerType->update(
+            $request->all()
+        );
+
+        return response()->json([
+          'data' => __('response.api.created', [
+            'name' => 'customer type'
+          ])
+        ], 200);
     }
 
     /**
@@ -81,6 +102,12 @@ class CustomerTypeController extends Controller
      */
     public function destroy(CustomerType $customerType)
     {
-        //
+        $customerType->delete();
+
+        return response()->json([
+          'data' => __('response.api.deleted', [
+            'name' => 'customer type'
+          ])
+        ], 200);
     }
 }

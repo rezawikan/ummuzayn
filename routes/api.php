@@ -19,8 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::prefix('auth')->group(function ($router) {
-    Route::post('login', 'API\AuthController@login');
-    // Route::post('logout', 'AuthController@logout');
+    Route::post('login', 'API\Auth\AuthController@login');
+    Route::post('register', 'API\Auth\AuthController@register');
     // Route::post('refresh', 'AuthController@refresh');
     // Route::post('me', 'AuthController@me');
+});
+
+
+Route::middleware(['auth:api', 'verified'])->group(function () {
+    Route::apiResource('customer-types', 'API\CustomerTypeController');
 });

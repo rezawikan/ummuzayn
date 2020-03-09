@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="16" assertions="20" errors="0" warnings="0" failures="0" skipped="0" time="8.381144">
-    <testsuite name="Unit" tests="15" assertions="19" errors="0" warnings="0" failures="0" skipped="0" time="7.951294">
-      <testsuite name="Tests\Unit\Customer\CityTest" file="C:\laragon\www\ummuzayn\tests\Unit\City\CityTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="2.864727">
-        <testcase name="test_it_belongs_to_city" class="Tests\Unit\Customer\CityTest" classname="Tests.Unit.Customer.CityTest" file="C:\laragon\www\ummuzayn\tests\Unit\City\CityTest.php" line="20" assertions="1" time="2.465465"/>
-        <testcase name="test_it_has_many_subdistricts" class="Tests\Unit\Customer\CityTest" classname="Tests.Unit.Customer.CityTest" file="C:\laragon\www\ummuzayn\tests\Unit\City\CityTest.php" line="34" assertions="1" time="0.399262"/>
+  <testsuite name="" tests="16" assertions="20" errors="0" warnings="0" failures="0" skipped="0" time="11.318671">
+    <testsuite name="Unit" tests="15" assertions="19" errors="0" warnings="0" failures="0" skipped="0" time="10.698395">
+      <testsuite name="Tests\Unit\Customer\CityTest" file="C:\laragon\www\ummuzayn\tests\Unit\City\CityTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="3.021877">
+        <testcase name="test_it_belongs_to_city" class="Tests\Unit\Customer\CityTest" classname="Tests.Unit.Customer.CityTest" file="C:\laragon\www\ummuzayn\tests\Unit\City\CityTest.php" line="20" assertions="1" time="2.466622"/>
+        <testcase name="test_it_has_many_subdistricts" class="Tests\Unit\Customer\CityTest" classname="Tests.Unit.Customer.CityTest" file="C:\laragon\www\ummuzayn\tests\Unit\City\CityTest.php" line="34" assertions="1" time="0.555255"/>
       </testsuite>
-      <testsuite name="Tests\Unit\Customer\CustomerAddressTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerAddress\CustomerAddressTest.php" tests="2" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.930663">
-        <testcase name="test_it_has_a_customer" class="Tests\Unit\Customer\CustomerAddressTest" classname="Tests.Unit.Customer.CustomerAddressTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerAddress\CustomerAddressTest.php" line="20" assertions="2" time="0.457520"/>
-        <testcase name="test_it_has_a_subdistrict" class="Tests\Unit\Customer\CustomerAddressTest" classname="Tests.Unit.Customer.CustomerAddressTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerAddress\CustomerAddressTest.php" line="35" assertions="2" time="0.473143"/>
+      <testsuite name="Tests\Unit\Customer\CustomerAddressTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerAddress\CustomerAddressTest.php" tests="2" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="1.450253">
+        <testcase name="test_it_has_a_customer" class="Tests\Unit\Customer\CustomerAddressTest" classname="Tests.Unit.Customer.CustomerAddressTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerAddress\CustomerAddressTest.php" line="20" assertions="2" time="0.752127"/>
+        <testcase name="test_it_has_a_subdistrict" class="Tests\Unit\Customer\CustomerAddressTest" classname="Tests.Unit.Customer.CustomerAddressTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerAddress\CustomerAddressTest.php" line="35" assertions="2" time="0.698126"/>
       </testsuite>
-      <testsuite name="Tests\Unit\CustomerType\CustomerTypeTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerType\CustomerTypeTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.369292">
-        <testcase name="test_it_has_many_customers" class="Tests\Unit\CustomerType\CustomerTypeTest" classname="Tests.Unit.CustomerType.CustomerTypeTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerType\CustomerTypeTest.php" line="19" assertions="1" time="0.369292"/>
+      <testsuite name="Tests\Unit\CustomerType\CustomerTypeTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerType\CustomerTypeTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.548297">
+        <testcase name="test_it_has_many_customers" class="Tests\Unit\CustomerType\CustomerTypeTest" classname="Tests.Unit.CustomerType.CustomerTypeTest" file="C:\laragon\www\ummuzayn\tests\Unit\CustomerType\CustomerTypeTest.php" line="19" assertions="1" time="0.548297"/>
       </testsuite>
-      <testsuite name="Tests\Unit\Customer\CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="1.818221">
-        <testcase name="test_it_has_customer_type" class="Tests\Unit\Customer\CustomerTest" classname="Tests.Unit.Customer.CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" line="20" assertions="1" time="0.328522"/>
-        <testcase name="test_it_belongs_to_a_customer_type" class="Tests\Unit\Customer\CustomerTest" classname="Tests.Unit.Customer.CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" line="34" assertions="1" time="0.393679"/>
-        <testcase name="test_it_has_many_customer_addresses" class="Tests\Unit\Customer\CustomerTest" classname="Tests.Unit.Customer.CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" line="48" assertions="1" time="0.557926"/>
-        <testcase name="test_it_has_one_default_address" class="Tests\Unit\Customer\CustomerTest" classname="Tests.Unit.Customer.CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" line="64" assertions="1" time="0.538094"/>
+      <testsuite name="Tests\Unit\Customer\CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="2.568707">
+        <testcase name="test_it_has_customer_type" class="Tests\Unit\Customer\CustomerTest" classname="Tests.Unit.Customer.CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" line="20" assertions="1" time="0.507041"/>
+        <testcase name="test_it_belongs_to_a_customer_type" class="Tests\Unit\Customer\CustomerTest" classname="Tests.Unit.Customer.CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" line="34" assertions="1" time="0.502792"/>
+        <testcase name="test_it_has_many_customer_addresses" class="Tests\Unit\Customer\CustomerTest" classname="Tests.Unit.Customer.CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" line="48" assertions="1" time="0.812359"/>
+        <testcase name="test_it_has_one_default_address" class="Tests\Unit\Customer\CustomerTest" classname="Tests.Unit.Customer.CustomerTest" file="C:\laragon\www\ummuzayn\tests\Unit\Customer\CustomerTest.php" line="64" assertions="1" time="0.746515"/>
       </testsuite>
-      <testsuite name="Tests\Unit\ExampleTest" file="C:\laragon\www\ummuzayn\tests\Unit\ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.001939">
-        <testcase name="testBasicTest" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" file="C:\laragon\www\ummuzayn\tests\Unit\ExampleTest.php" line="14" assertions="1" time="0.001939"/>
+      <testsuite name="Tests\Unit\ExampleTest" file="C:\laragon\www\ummuzayn\tests\Unit\ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.002908">
+        <testcase name="testBasicTest" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" file="C:\laragon\www\ummuzayn\tests\Unit\ExampleTest.php" line="14" assertions="1" time="0.002908"/>
       </testsuite>
-      <testsuite name="Tests\Unit\Customer\ProvinceTest" file="C:\laragon\www\ummuzayn\tests\Unit\Province\ProvinceTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="1.113701">
-        <testcase name="test_province_has_many_cities_first" class="Tests\Unit\Customer\ProvinceTest" classname="Tests.Unit.Customer.ProvinceTest" file="C:\laragon\www\ummuzayn\tests\Unit\Province\ProvinceTest.php" line="20" assertions="1" time="0.345781"/>
-        <testcase name="test_province_has_many_cities_second" class="Tests\Unit\Customer\ProvinceTest" classname="Tests.Unit.Customer.ProvinceTest" file="C:\laragon\www\ummuzayn\tests\Unit\Province\ProvinceTest.php" line="39" assertions="1" time="0.364258"/>
-        <testcase name="test_province_has_many_through_subdistrict" class="Tests\Unit\Customer\ProvinceTest" classname="Tests.Unit.Customer.ProvinceTest" file="C:\laragon\www\ummuzayn\tests\Unit\Province\ProvinceTest.php" line="58" assertions="1" time="0.403662"/>
+      <testsuite name="Tests\Unit\Customer\ProvinceTest" file="C:\laragon\www\ummuzayn\tests\Unit\Province\ProvinceTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="1.799539">
+        <testcase name="test_province_has_many_cities_first" class="Tests\Unit\Customer\ProvinceTest" classname="Tests.Unit.Customer.ProvinceTest" file="C:\laragon\www\ummuzayn\tests\Unit\Province\ProvinceTest.php" line="20" assertions="1" time="0.571875"/>
+        <testcase name="test_province_has_many_cities_second" class="Tests\Unit\Customer\ProvinceTest" classname="Tests.Unit.Customer.ProvinceTest" file="C:\laragon\www\ummuzayn\tests\Unit\Province\ProvinceTest.php" line="39" assertions="1" time="0.570536"/>
+        <testcase name="test_province_has_many_through_subdistrict" class="Tests\Unit\Customer\ProvinceTest" classname="Tests.Unit.Customer.ProvinceTest" file="C:\laragon\www\ummuzayn\tests\Unit\Province\ProvinceTest.php" line="58" assertions="1" time="0.657128"/>
       </testsuite>
-      <testsuite name="Tests\Unit\Customer\SubdistrictTest" file="C:\laragon\www\ummuzayn\tests\Unit\Subdistrict\ProvinceTest.php" tests="2" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.852751">
-        <testcase name="test_it_belongs_to_city" class="Tests\Unit\Customer\SubdistrictTest" classname="Tests.Unit.Customer.SubdistrictTest" file="C:\laragon\www\ummuzayn\tests\Unit\Subdistrict\ProvinceTest.php" line="21" assertions="2" time="0.345920"/>
-        <testcase name="test_it_has_may_customer_addresses" class="Tests\Unit\Customer\SubdistrictTest" classname="Tests.Unit.Customer.SubdistrictTest" file="C:\laragon\www\ummuzayn\tests\Unit\Subdistrict\ProvinceTest.php" line="39" assertions="2" time="0.506831"/>
+      <testsuite name="Tests\Unit\Customer\SubdistrictTest" file="C:\laragon\www\ummuzayn\tests\Unit\Subdistrict\ProvinceTest.php" tests="2" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="1.306813">
+        <testcase name="test_it_belongs_to_city" class="Tests\Unit\Customer\SubdistrictTest" classname="Tests.Unit.Customer.SubdistrictTest" file="C:\laragon\www\ummuzayn\tests\Unit\Subdistrict\ProvinceTest.php" line="21" assertions="2" time="0.526470"/>
+        <testcase name="test_it_has_may_customer_addresses" class="Tests\Unit\Customer\SubdistrictTest" classname="Tests.Unit.Customer.SubdistrictTest" file="C:\laragon\www\ummuzayn\tests\Unit\Subdistrict\ProvinceTest.php" line="39" assertions="2" time="0.780343"/>
       </testsuite>
     </testsuite>
-    <testsuite name="Feature" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.429850">
-      <testsuite name="Tests\Feature\ExampleTest" file="C:\laragon\www\ummuzayn\tests\Feature\ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.429850">
-        <testcase name="testBasicTest" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" file="C:\laragon\www\ummuzayn\tests\Feature\ExampleTest.php" line="15" assertions="1" time="0.429850"/>
+    <testsuite name="Feature" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.620276">
+      <testsuite name="Tests\Feature\ExampleTest" file="C:\laragon\www\ummuzayn\tests\Feature\ExampleTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.620276">
+        <testcase name="testBasicTest" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" file="C:\laragon\www\ummuzayn\tests\Feature\ExampleTest.php" line="15" assertions="1" time="0.620276"/>
       </testsuite>
     </testsuite>
   </testsuite>

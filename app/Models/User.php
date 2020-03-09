@@ -6,11 +6,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Notifications\API\VerifyEmailRegistered;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -58,5 +57,15 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function ApisendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailRegistered);
     }
 }
