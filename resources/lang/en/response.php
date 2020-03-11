@@ -16,7 +16,7 @@ return [
     'api' => [
       'created' => 'The :name has been successfully created',
       'updated' => 'The :name has been successfully updated',
-      'deleted' => 'The :name has been successfully updated',
+      'deleted' => 'The :name has been successfully deleted',
       '404' => 'Data not found'
     ]
 

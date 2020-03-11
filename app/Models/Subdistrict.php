@@ -4,10 +4,13 @@ namespace App\Models;
 
 use App\Models\City;
 use App\Models\Customer;
+use App\Models\Traits\CanBeScoped;
+use App\Models\Traits\CanBeOrderable;
 use Illuminate\Database\Eloquent\Model;
 
 class Subdistrict extends Model
 {
+    use CanBeScoped, CanBeOrderable;
     /**
      * The attributes that are mass assignable.
      *

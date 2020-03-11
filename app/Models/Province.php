@@ -4,10 +4,14 @@ namespace App\Models;
 
 use App\Models\City;
 use App\Models\Subdistrict;
+use App\Models\Traits\CanBeScoped;
+use App\Models\Traits\CanBeOrderable;
 use Illuminate\Database\Eloquent\Model;
 
 class Province extends Model
 {
+    use CanBeScoped, CanBeOrderable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,7 +20,7 @@ class Province extends Model
     protected $fillable = [
         'name'
     ];
-    
+
     /**
     * Get all of the subdistricts for the province.
     */

@@ -4,16 +4,19 @@ namespace App\Models;
 
 use App\Models\Province;
 use App\Models\Subdistrict;
+use App\Models\Traits\CanBeScoped;
+use App\Models\Traits\CanBeOrderable;
 use Illuminate\Database\Eloquent\Model;
 
 class City extends Model
 {
+    use CanBeScoped, CanBeOrderable;
 
-  /**
-   * The attributes that are mass assignable.
-   *
-   * @var array
-   */
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
       'name',
       'capital',

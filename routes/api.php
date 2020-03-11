@@ -26,6 +26,9 @@ Route::prefix('auth')->group(function ($router) {
 });
 
 
-Route::middleware(['auth:api', 'verified'])->group(function () {
+Route::middleware(['auth:api'])->group(function () {
     Route::apiResource('customer-types', 'API\CustomerTypeController');
+    Route::apiResource('provinces', 'API\ProvinceController');
+    Route::apiResource('cities', 'API\CityController');
+    Route::apiResource('subdistricts', 'API\SubdistrictController');
 });
