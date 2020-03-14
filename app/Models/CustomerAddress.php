@@ -3,11 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\CanBeOrderable;
+use App\Models\Traits\CanBeScoped;
 use App\Models\Subdistrict;
 use App\Models\Customer;
 
 class CustomerAddress extends Model
 {
+    use CanBeScoped, CanBeOrderable;
+
     /**
      * The attributes that are mass assignable.
      *

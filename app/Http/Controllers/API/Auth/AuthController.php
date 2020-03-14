@@ -8,7 +8,6 @@ use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Events\API\Auth\ApiRegistered;
 
 class AuthController extends Controller
 {
@@ -43,12 +42,10 @@ class AuthController extends Controller
     */
     public function register(RegisterRequest $request)
     {
-        event(new ApiRegistered(
-            $user = User::create([
-              'name' => $request->name,
-              'email' => $request->email,
-              'password' => Hash::make($request->password)
-          ])
-        ));
+        return $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
     }
 }
