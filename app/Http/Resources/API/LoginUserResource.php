@@ -18,7 +18,8 @@ class LoginUserResource extends JsonResource
          'id'    => $this->id,
          'email' => $this->email,
          'name'  => $this->name,
-         'scope' => 'admin'
+         'scope' => 'admin',
+         'picture' => 'https://via.placeholder.com/300.png/09f/fff'
        ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Resources\API;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\API\CityResource;
 
 class SubdistrictResource extends JsonResource
 {
@@ -17,7 +18,8 @@ class SubdistrictResource extends JsonResource
         return [
           'id' => $this->id,
           'city_id' => $this->city_id,
-          'name' => $this->name
+          'name' => $this->name,
+          'city' => new CityResource($this->whenLoaded('city'))
         ];
     }
 }

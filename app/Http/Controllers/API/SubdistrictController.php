@@ -6,6 +6,7 @@ use App\Http\Resources\API\SubdistrictResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subdistrict;
+use App\Scoping\Scopes\Address\CityScope;
 
 class SubdistrictController extends Controller
 {
@@ -17,7 +18,7 @@ class SubdistrictController extends Controller
     protected function scopes()
     {
         return [
-        // 'name'    => new NameScope(),
+        'city'    => new CityScope(),
         ];
     }
 
@@ -31,11 +32,16 @@ class SubdistrictController extends Controller
         $subdistricts = Subdistrict::Ordered('name')
         ->withScopes(
             $this->scopes()
-        )
-        ->paginate(12)
-        ->appends(
-            $request->except('page')
         );
+
+        if ($request->paginate == null || $request->paginate == 'true') {
+            $subdistricts = $subdistricts->paginate(12)
+            ->appends(
+                $request->except('page')
+            );
+        } else {
+            $subdistricts = $subdistricts->get();
+        }
 
         return SubdistrictResource::collection($subdistricts);
     }
@@ -66,6 +72,7 @@ class SubdistrictController extends Controller
      */
     public function show(Subdistrict $subdistrict)
     {
+        $subdistrict->load(['city.province']);
         return new SubdistrictResource($subdistrict);
     }
 

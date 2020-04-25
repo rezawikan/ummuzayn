@@ -6,6 +6,7 @@ use App\Http\Resources\API\Customer\CustomerTypeResource;
 use App\Http\Controllers\Controller;
 use App\Models\CustomerType;
 use Illuminate\Http\Request;
+use App\Scoping\Scopes\All\TypeScope;
 use App\Http\Requests\CustomerTypeStoreRequest;
 use App\Http\Requests\CustomerTypeUpdateRequest;
 
@@ -19,10 +20,7 @@ class CustomerTypeController extends Controller
     protected function scopes()
     {
         return [
-          // 'slug'    => 'asd',
-          // 'name'    => new NameScope(),
-          // 'popular' => new PopularScope(),
-          // 'status'  => new StatusScope()
+          'type'    => new TypeScope(),
         ];
     }
 
@@ -36,11 +34,16 @@ class CustomerTypeController extends Controller
         $types = CustomerType::Ordered('type')
         ->withScopes(
             $this->scopes()
-        )
-        ->paginate(12)
-        ->appends(
-            $request->except('page')
         );
+
+        if ($request->paginate == null || $request->paginate == 'true') {
+            $types = $types->paginate(12)
+            ->appends(
+                $request->except('page')
+            );
+        } else {
+            $types = $types->get();
+        }
 
         return CustomerTypeResource::collection($types);
     }

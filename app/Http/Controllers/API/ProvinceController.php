@@ -31,11 +31,16 @@ class ProvinceController extends Controller
         $provinces = Province::Ordered('name')
         ->withScopes(
             $this->scopes()
-        )
-        ->paginate(12)
-        ->appends(
-            $request->except('page')
         );
+
+        if ($request->paginate == null || $request->paginate == 'true') {
+            $provinces = $provinces->paginate(12)
+            ->appends(
+                $request->except('page')
+            );
+        } else {
+            $provinces = $provinces->get();
+        }
 
         return ProvinceResource::collection($provinces);
     }

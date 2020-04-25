@@ -30,6 +30,14 @@ class Subdistrict extends Model
     }
 
     /**
+     * Get the user's history.
+     */
+    public function province()
+    {
+        return $this->hasOneThrough('App\Models\Province', 'App\Models\City');
+    }
+
+    /**
     * Get the customer addresses for the subdistrict.
     */
     public function customer_addresses()

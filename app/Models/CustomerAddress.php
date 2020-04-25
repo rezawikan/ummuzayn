@@ -13,6 +13,15 @@ class CustomerAddress extends Model
     use CanBeScoped, CanBeOrderable;
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'default' => 'boolean',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

@@ -3,6 +3,7 @@
 namespace App\Http\Resources\API\Customer;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 
 class CustomerAddressResource extends JsonResource
 {
@@ -14,6 +15,10 @@ class CustomerAddressResource extends JsonResource
      */
     public function toArray($request)
     {
+        if ($this->resource instanceof Collection) {
+            return CustomerAddressResource::collection($this->resource);
+        }
+
         return [
           'id' => $this->id,
           'customer_id' => $this->customer_id,

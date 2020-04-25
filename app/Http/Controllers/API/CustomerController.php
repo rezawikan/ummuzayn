@@ -31,11 +31,18 @@ class CustomerController extends Controller
         $customers = Customer::Ordered('name')
         ->withScopes(
             $this->scopes()
-        )
-        ->paginate(12)
-        ->appends(
-            $request->except('page')
         );
+
+        if ($request->paginate == null || $request->paginate == 'true') {
+            $customers = $customers->paginate(12)
+            ->appends(
+                $request->except('page')
+            );
+        } else {
+            $customers = $customers->get();
+        }
+
+        $customers->load(['type']);
 
         return CustomerResource::collection($customers);
     }
@@ -68,6 +75,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
+        $customer->load(['customer_addresses']);
         return new CustomerResource($customer);
     }
 

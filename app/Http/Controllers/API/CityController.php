@@ -6,6 +6,7 @@ use App\Http\Resources\API\CityResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\City;
+use App\Scoping\Scopes\Address\ProvinceScope;
 
 class CityController extends Controller
 {
@@ -17,7 +18,7 @@ class CityController extends Controller
     protected function scopes()
     {
         return [
-          // 'name'    => new NameScope(),
+          'province'    => new ProvinceScope(),
         ];
     }
 
@@ -31,11 +32,16 @@ class CityController extends Controller
         $cities = City::Ordered('name')
         ->withScopes(
             $this->scopes()
-        )
-        ->paginate(12)
-        ->appends(
-            $request->except('page')
         );
+
+        if ($request->paginate == null || $request->paginate == 'true') {
+            $cities = $cities->paginate(12)
+            ->appends(
+                $request->except('page')
+            );
+        } else {
+            $cities = $cities->get();
+        }
 
         return CityResource::collection($cities);
     }

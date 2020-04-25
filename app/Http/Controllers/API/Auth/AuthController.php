@@ -13,7 +13,7 @@ class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
     public function login(Request $request)
@@ -28,9 +28,9 @@ class AuthController extends Controller
 
         return (new LoginUserResource($request->user()))
               ->additional([
-                'meta' => [
-                  'token' => $token
-                ]
+                  'meta' => [
+                    'token' => $token
+                  ]
               ]);
     }
 
@@ -47,5 +47,16 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
+    }
+
+    /**
+    * Handle a registration request for the application.
+    *
+    * @param \Illuminate\Http\Request
+    * @return \Illuminate\Http\Response
+    */
+    public function me(Request $request)
+    {
+        return new LoginUserResource(auth()->user());
     }
 }

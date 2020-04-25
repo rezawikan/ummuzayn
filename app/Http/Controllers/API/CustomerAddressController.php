@@ -32,11 +32,16 @@ class CustomerAddressController extends Controller
         $customerAddresses = CustomerAddress::Ordered('name')
         ->withScopes(
             $this->scopes()
-        )
-        ->paginate(12)
-        ->appends(
-            $request->except('page')
         );
+
+        if ($request->paginate == null || $request->paginate == 'true') {
+            $customerAddresses = $customerAddresses->paginate(12)
+            ->appends(
+                $request->except('page')
+            );
+        } else {
+            $customerAddresses = $customerAddresses->get();
+        }
 
         return CustomerAddressResource::collection($customerAddresses);
     }
