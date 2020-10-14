@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\API\LoginUserResource;
+use App\Http\Resources\API\LoginAdminResource;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Traits\CurrentAuth;
 
 class AuthController extends Controller
 {
+    use CurrentAuth;
+    
     /**
-     * Display a listing of the resource.
-     * @param \Illuminate\Http\Request
+     * Handle a login for the admin.
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function login(Request $request)
@@ -26,7 +29,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        return (new LoginUserResource($request->user()))
+        return (new LoginAdminResource($request->user()))
               ->additional([
                   'meta' => [
                     'token' => $token
@@ -35,14 +38,14 @@ class AuthController extends Controller
     }
 
     /**
-    * Handle a registration request for the application.
+    * Handle a registration request for the admin.
     *
     * @param  \App\Http\Requests\Auth\RegisterRequest  $request
     * @return \Illuminate\Http\Response
     */
     public function register(RegisterRequest $request)
     {
-        return $user = User::create([
+        return $admin = Admin::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
@@ -50,13 +53,20 @@ class AuthController extends Controller
     }
 
     /**
-    * Handle a registration request for the application.
+    * Handle an update request for the admin.
     *
-    * @param \Illuminate\Http\Request
+    * @param \Illuminate\Http\Request $request
+    * @param \App\Models\Admin $admin
     * @return \Illuminate\Http\Response
     */
-    public function me(Request $request)
+    public function update(Request $request, Admin $admin)
     {
-        return new LoginUserResource(auth()->user());
+        $admin->update(
+            $request->all()
+        );
+
+        return response()->json([
+          'data' => new LoginAdminResource($admin)
+        ], 200);
     }
 }

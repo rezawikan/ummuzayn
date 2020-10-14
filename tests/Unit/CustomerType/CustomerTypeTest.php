@@ -2,15 +2,12 @@
 
 namespace Tests\Unit\CustomerType;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Customer;
 use App\Models\CustomerType;
 
 class CustomerTypeTest extends TestCase
 {
-    use RefreshDatabase;
     /**
      * Customer type has customer type
      *

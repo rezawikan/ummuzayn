@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Resources\API\Customer\CustomerResource;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 
@@ -56,12 +57,14 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $customer = Customer::create(
-            $request->only([
-              'customer_type_id',
-              'name',
-              'email',
-              'phone'
-            ])
+            array_merge($request->only([
+                'customer_type_id',
+                'name',
+                'email',
+                'phone'
+              ]), [
+                  'password' => Hash::make($request->password)
+              ])
         );
 
         return new CustomerResource($customer);

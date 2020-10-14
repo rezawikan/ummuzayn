@@ -1,32 +1,42 @@
-
-
-Code Coverage Report:     
-  2020-03-14 00:09:09     
-                          
- Summary:                 
-  Classes: 22.22% (10/45) 
-  Methods: 20.56% (22/107)
-  Lines:   12.37% (36/291)
-
-\App\Console::App\Console\Kernel
-  Methods:  50.00% ( 1/ 2)   Lines:  75.00% (  3/  4)
-\App\Models::App\Models\City
-  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
-\App\Models::App\Models\Customer
-  Methods: 100.00% ( 3/ 3)   Lines: 100.00% (  3/  3)
-\App\Models::App\Models\CustomerAddress
-  Methods: 100.00% ( 3/ 3)   Lines: 100.00% (  3/  3)
-\App\Models::App\Models\CustomerType
-  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
-\App\Models::App\Models\Province
-  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
-\App\Models::App\Models\Subdistrict
-  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
-\App\Providers::App\Providers\AppServiceProvider
-  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
-\App\Providers::App\Providers\AuthServiceProvider
-  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  2/  2)
-\App\Providers::App\Providers\EventServiceProvider
-  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  2/  2)
-\App\Providers::App\Providers\RouteServiceProvider
-  Methods: 100.00% ( 4/ 4)   Lines: 100.00% ( 14/ 14)
+
+
+Code Coverage Report:     
+  2020-10-14 12:35:44     
+                          
+ Summary:                 
+  Classes: 11.76% (10/85) 
+  Methods: 11.95% (27/226)
+  Lines:    9.27% (66/712)
+
+App\Console\Kernel
+  Methods:  50.00% ( 1/ 2)   Lines:  75.00% (  3/  4)
+App\Http\Controllers\API\ProductController
+  Methods:  16.67% ( 1/ 6)   Lines:  56.25% (  9/ 16)
+App\Http\Resources\API\Product\ProductResource
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  9/  9)
+App\Http\Resources\API\Product\ProductStatusResource
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  4/  4)
+App\Models\Admin
+  Methods:  60.00% ( 3/ 5)   Lines:  42.86% (  3/  7)
+App\Models\Product
+  Methods: 100.00% ( 5/ 5)   Lines: 100.00% (  5/  5)
+App\Models\ProductCategory
+  Methods:  25.00% ( 1/ 4)   Lines:  25.00% (  1/  4)
+App\Models\ProductStatus
+  Methods:  50.00% ( 1/ 2)   Lines:  50.00% (  1/  2)
+App\Models\Traits\CanBeOrderable
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  2/  2)
+App\Models\Traits\CanBeScoped
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+App\Providers\AppServiceProvider
+  Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  2/  2)
+App\Providers\AuthServiceProvider
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  2/  2)
+App\Providers\BroadcastServiceProvider
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  3/  3)
+App\Providers\EventServiceProvider
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  2/  2)
+App\Providers\RouteServiceProvider
+  Methods: 100.00% ( 4/ 4)   Lines: 100.00% ( 14/ 14)
+App\Scoping\Scoper
+  Methods:  66.67% ( 2/ 3)   Lines:  50.00% (  5/ 10)

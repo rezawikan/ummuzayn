@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Resources\API\SubdistrictResource;
+use App\Scoping\Scopes\Address\CityScope;
 use App\Http\Controllers\Controller;
+use App\Events\Region\UpdateRegionSubdistrict;
 use Illuminate\Http\Request;
 use App\Models\Subdistrict;
-use App\Scoping\Scopes\Address\CityScope;
 
 class SubdistrictController extends Controller
 {
@@ -29,7 +30,7 @@ class SubdistrictController extends Controller
      */
     public function index(Request $request)
     {
-        $subdistricts = Subdistrict::Ordered('name')
+        $subdistricts = Subdistrict::latest()
         ->withScopes(
             $this->scopes()
         );
@@ -42,6 +43,8 @@ class SubdistrictController extends Controller
         } else {
             $subdistricts = $subdistricts->get();
         }
+
+        $subdistricts->load(['city.province']);
 
         return SubdistrictResource::collection($subdistricts);
     }
@@ -60,6 +63,8 @@ class SubdistrictController extends Controller
               'name'
             ])
         );
+
+        event(new UpdateRegionSubdistrict());
 
         return new SubdistrictResource($subdistrict);
     }
@@ -90,6 +95,8 @@ class SubdistrictController extends Controller
             $request->all()
         );
 
+        event(new UpdateRegionSubdistrict());
+
         return response()->json([
           'data' => __('response.api.updated', [
             'name' => 'subdistrict'
@@ -106,6 +113,8 @@ class SubdistrictController extends Controller
     public function destroy(Subdistrict $subdistrict)
     {
         $subdistrict->delete();
+
+        event(new UpdateRegionSubdistrict());
 
         return response()->json([
           'data' => __('response.api.deleted', [

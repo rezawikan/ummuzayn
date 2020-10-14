@@ -1,9 +1,7 @@
 <?php
 
-namespace Tests\Unit\Customer;
+namespace Tests\Unit\City;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Subdistrict;
 use App\Models\Province;
@@ -11,7 +9,6 @@ use App\Models\City;
 
 class CityTest extends TestCase
 {
-    use RefreshDatabase;
     /**
      * City belongs to city
      *
@@ -39,6 +36,6 @@ class CityTest extends TestCase
           factory(Subdistrict::class)->make()
         ]);
 
-        $this->assertEquals($city->subdistricts->count(), 2);
+        $this->assertEquals($city->has_subdistricts(), true);
     }
 }

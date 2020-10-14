@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Resources\API\CityResource;
 use App\Http\Controllers\Controller;
+use App\Events\Region\UpdateRegionCity;
 use Illuminate\Http\Request;
 use App\Models\City;
 use App\Scoping\Scopes\Address\ProvinceScope;
@@ -43,6 +44,8 @@ class CityController extends Controller
             $cities = $cities->get();
         }
 
+        $cities->load(['province','subdistricts']);
+
         return CityResource::collection($cities);
     }
 
@@ -61,6 +64,8 @@ class CityController extends Controller
             'province_id'
           ])
         );
+
+        event(new UpdateRegionCity());
 
         return new CityResource($city);
     }
@@ -89,6 +94,8 @@ class CityController extends Controller
             $request->all()
         );
 
+        event(new UpdateRegionCity());
+
         return response()->json([
           'data' => __('response.api.updated', [
             'name' => 'city'
@@ -105,6 +112,8 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         $city->delete();
+
+        event(new UpdateRegionCity());
 
         return response()->json([
           'data' => __('response.api.deleted', [

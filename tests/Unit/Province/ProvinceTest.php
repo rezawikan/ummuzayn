@@ -1,9 +1,7 @@
 <?php
 
-namespace Tests\Unit\Customer;
+namespace Tests\Unit\Province;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Subdistrict;
 use App\Models\Province;
@@ -11,7 +9,6 @@ use App\Models\City;
 
 class ProvinceTest extends TestCase
 {
-    use RefreshDatabase;
     /**
      * Province has many cities in first
      *
@@ -29,25 +26,7 @@ class ProvinceTest extends TestCase
         $this->assertdatabaseHas('cities', [
              'province_id' => $province->id
          ]);
-    }
-
-    /**
-     * Province has many cities in second
-     *
-     * @return void
-     */
-    public function test_province_has_many_cities_second()
-    {
-        $province = factory(Province::class)->create();
-        factory(City::class)->create([
-           'province_id' => $province->id
-         ]);
-        factory(City::class)->create([
-           'province_id' => $province->id
-         ]);
-
-
-        $this->assertEquals(count($province->cities->toArray()), 2);
+        $this->assertEquals($province->has_cities(), true);
     }
 
     /**

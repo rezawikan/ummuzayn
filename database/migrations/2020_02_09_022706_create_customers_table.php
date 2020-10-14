@@ -19,6 +19,9 @@ class CreateCustomersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('customer_type_id')->references('id')->on('customer_types');

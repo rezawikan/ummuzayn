@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Resources\API\ProvinceResource;
 use App\Http\Controllers\Controller;
+use App\Events\Region\UpdateRegionProvince;
 use Illuminate\Http\Request;
 use App\Models\Province;
 
@@ -16,9 +17,7 @@ class ProvinceController extends Controller
      */
     protected function scopes()
     {
-        return [
-        // 'name'    => new NameScope(),
-        ];
+        return [];
     }
 
     /**
@@ -28,7 +27,7 @@ class ProvinceController extends Controller
      */
     public function index(Request $request)
     {
-        $provinces = Province::Ordered('name')
+        $provinces = Province::latest()
         ->withScopes(
             $this->scopes()
         );
@@ -41,6 +40,8 @@ class ProvinceController extends Controller
         } else {
             $provinces = $provinces->get();
         }
+
+        $provinces->load(['cities']);
 
         return ProvinceResource::collection($provinces);
     }
@@ -59,7 +60,11 @@ class ProvinceController extends Controller
           ])
         );
 
-        return new ProvinceResource($province);
+        $province->load(['cities']);
+
+        event(new UpdateRegionProvince());
+
+        return $province;
     }
 
     /**
@@ -85,6 +90,8 @@ class ProvinceController extends Controller
         $province->update(
             $request->all()
         );
+        
+        event(new UpdateRegionProvince());
 
         return response()->json([
           'data' => __('response.api.updated', [
@@ -102,6 +109,8 @@ class ProvinceController extends Controller
     public function destroy(Province $province)
     {
         $province->delete();
+
+        event(new UpdateRegionProvince());
 
         return response()->json([
         'data' => __('response.api.deleted', [

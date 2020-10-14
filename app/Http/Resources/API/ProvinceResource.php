@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\API;
 
+use App\Http\Resources\API\CityResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProvinceResource extends JsonResource
@@ -16,7 +17,9 @@ class ProvinceResource extends JsonResource
     {
         return [
           'id' => $this->id,
-          'name' => $this->name
+          'name' => $this->name,
+          'cities' => CityResource::collection($this->whenLoaded('cities')),
+          'has_cities' => $this->has_cities()
         ];
     }
 }

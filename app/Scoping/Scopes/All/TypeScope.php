@@ -12,6 +12,10 @@ class TypeScope implements Scope
 {
     public function apply(Builder $builder, $value)
     {
-        return $builder->whereRaw("UPPER(type) LIKE '%". strtoupper($value)."%'");
+        if(is_string($value)) {
+            return $builder->whereRaw("UPPER(type) LIKE '%". strtoupper($value)."%'");
+        }
+        return $builder;
+        
     }
 }

@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\CanBeOrderable;
 use App\Models\Traits\CanBeScoped;
+use Laravel\Scout\Searchable;
 use App\Models\Subdistrict;
 use App\Models\Customer;
 
 class CustomerAddress extends Model
 {
-    use CanBeScoped, CanBeOrderable;
+    use CanBeScoped, CanBeOrderable, Searchable;
 
     /**
      * The attributes that should be cast.
@@ -34,6 +35,16 @@ class CustomerAddress extends Model
       'address',
       'phone'
     ];
+
+    /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'customer_addresses_index';
+    }
 
     /**
     * Get the subdistrict that owns the customer addresses.

@@ -1,9 +1,7 @@
 <?php
 
-namespace Tests\Unit\Customer;
+namespace Tests\Unit\CustomerAddress;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Customer;
 use App\Models\Subdistrict;
@@ -11,7 +9,6 @@ use App\Models\CustomerAddress;
 
 class CustomerAddressTest extends TestCase
 {
-    use RefreshDatabase;
     /**
      * Customer address has customer type
      *

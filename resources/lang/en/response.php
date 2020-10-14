@@ -17,6 +17,7 @@ return [
       'created' => 'The :name has been successfully created',
       'updated' => 'The :name has been successfully updated',
       'deleted' => 'The :name has been successfully deleted',
+      'delete_has_relation' => 'The :name has children and cannot deleted',
       '404' => 'Data not found'
     ]
 

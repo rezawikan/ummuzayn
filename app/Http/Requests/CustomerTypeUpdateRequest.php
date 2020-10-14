@@ -24,8 +24,8 @@ class CustomerTypeUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-          'type' => 'required|unique:customer_types,type,'.$this->type.'|max:255',
-          'slug' => 'required|unique:customer_types,slug,'.$this->slug.'|max:255'
+          'type' => 'required|unique:customer_types,type,'.$this->route('customer_type')->id.'|max:255',
+          'slug' => 'required|unique:customer_types,slug,'.$this->route('customer_type')->id.'|max:255'
         ];
     }
 }

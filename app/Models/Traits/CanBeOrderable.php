@@ -14,8 +14,8 @@ trait CanBeOrderable
      * @param  string|asc  $direction
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeOrdered(Builder $builder, $column = 'name', $direction = 'asc')
+    public function scopeOrdered(Builder $query, $column = 'name', $direction = 'asc')
     {
-        $builder->orderBy($column, $direction);
+        $query->orderBy($column, $direction);
     }
 }

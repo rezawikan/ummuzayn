@@ -2,19 +2,55 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Resources\API\Product\ProductResource;
 use App\Http\Controllers\Controller;
+use App\Scoping\Scopes\All\NameScope;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List query scope
      *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function index()
+    protected function scopes()
     {
-        //
+        return [
+          'name'    => new NameScope(),
+        ];
+    }
+
+    /**
+     * Display a listing of the resource.
+     * @param \Illuminate\Http\Request $request
+     * @return \App\Http\Resources\API\Product\ProductResource
+     */
+    public function index(Request $request)
+    {
+        $products = Product::Ordered('name')
+        ->withScopes(
+            $this->scopes()
+        );
+
+        if ($request->paginate == null || $request->paginate == 'true') {
+            $products = $products->paginate(12)
+            ->appends(
+                $request->except('page')
+            );
+        } else {
+            $products = $products->get();
+        }
+
+        $products->load([
+          'status',
+          'product_images',
+          'product_variations.product_variation_type',
+          'product_variations.stocks'
+        ]);
+
+        return ProductResource::collection($products);
     }
 
     /**
@@ -34,9 +70,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return $product;
     }
 
     /**

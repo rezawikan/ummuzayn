@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Models\City;
 use App\Models\Customer;
+use Laravel\Scout\Searchable;
 use App\Models\Traits\CanBeScoped;
 use App\Models\Traits\CanBeOrderable;
 use Illuminate\Database\Eloquent\Model;
 
 class Subdistrict extends Model
 {
-    use CanBeScoped, CanBeOrderable;
+    use CanBeScoped, CanBeOrderable, Searchable;
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +23,16 @@ class Subdistrict extends Model
     ];
 
     /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'subdistricts_index';
+    }
+
+    /**
     * Get the city that owns the subdistrict.
     */
     public function city()
@@ -30,11 +41,11 @@ class Subdistrict extends Model
     }
 
     /**
-     * Get the user's history.
+     * Get the province.
      */
     public function province()
     {
-        return $this->hasOneThrough('App\Models\Province', 'App\Models\City');
+        return $this->city->province;
     }
 
     /**

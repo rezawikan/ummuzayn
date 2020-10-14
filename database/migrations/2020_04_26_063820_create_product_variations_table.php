@@ -17,7 +17,8 @@ class CreateProductVariationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id')->index();
             $table->unsignedBigInteger('product_variation_type_id')->index()->nullable();
-            $table->integer('stock');
+            $table->string('variation_name');
+            $table->double('weight');
             $table->double('price');
             $table->double('base_price');
             $table->integer('orderable');
