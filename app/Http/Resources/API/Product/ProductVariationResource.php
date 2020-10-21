@@ -4,6 +4,7 @@ namespace App\Http\Resources\API\Product;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\API\Product\ProductResource;
+use App\Http\Resources\API\Product\ProductStockResouce;
 use App\Http\Resources\API\Product\ProductVariationTypeResource;
 
 class ProductVariationResource extends JsonResource
@@ -24,10 +25,11 @@ class ProductVariationResource extends JsonResource
           'price' => $this->price,
           'base_price'  => $this->base_price,
           'weight'  => $this->weight,
-          'stocks' => $this->live_stocks(),
+          'stock' => $this->stock,
           'orderable' => $this->orderable,
           'product' => new ProductResource($this->whenLoaded('product')),
-          'product_variation_type' => new ProductVariationTypeResource($this->whenLoaded('product_variation_type'))
+          'product_variation_type' => new ProductVariationTypeResource($this->whenLoaded('product_variation_type')),
+          'stocks' => new ProductStockResouce($this->whenLoaded('stocks'))
         ];
     }
 }

@@ -21,6 +21,7 @@ class CreateProductVariationsTable extends Migration
             $table->double('weight');
             $table->double('price');
             $table->double('base_price');
+            $table->integer('stock');
             $table->integer('orderable');
             $table->timestamps();
 

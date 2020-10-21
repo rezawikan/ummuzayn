@@ -12,9 +12,10 @@ $factory->define(ProductVariation::class, function (Faker $faker) {
         'product_id' => factory(Product::class)->create()->id,
         'product_variation_type_id' => factory(ProductVariationType::class)->create()->id,
         'variation_name' => $faker->name,
-        'price' => 100, 
-        'base_price' => 75, 
-        'weight' => 1, 
-        'orderable' => rand(1,100)
+        'price' => 100,
+        'base_price' => 75,
+        'weight' => 1,
+        'orderable' => rand(1, 100),
+        'stock' => rand(1, 100)
     ];
 });

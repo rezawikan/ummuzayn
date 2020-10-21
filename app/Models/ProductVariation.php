@@ -19,7 +19,7 @@ class ProductVariation extends Model
      * @var array
      */
     protected $fillable = [
-      'product_id', 'product_variation_type_id', 'variation_name', 'price', 'base_price', 'weight', 'orderable'
+      'product_id', 'product_variation_type_id', 'variation_name', 'price', 'base_price', 'weight', 'orderable', 'stock'
     ];
 
     /**
@@ -59,11 +59,19 @@ class ProductVariation extends Model
     }
 
     /**
-     * Get the live stocks for the product variation.
+     * Get the number of stocks for the product variation.
      */
-    public function live_stocks()
+    public function count_stocks()
     {
         return $this->stocks->sum('quantity');
+    }
+
+    /**
+     * compare stock.
+     */
+    public function compare_stocks()
+    {
+        return $this->count_stocks() == $this->stock;
     }
 
     /**
