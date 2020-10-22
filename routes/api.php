@@ -56,7 +56,6 @@ Route::middleware(['auth:admins'])->group(function () {
     Route::apiResource('cities', 'API\CityController');
     Route::apiResource('subdistricts', 'API\SubdistrictController');
     Route::apiResource('products', 'API\ProductController');
-    Route::apiResource('product/stocks', 'API\ProductStockController');
     Route::apiResource('product/images', 'API\ProductImageController');
     Route::apiResource('product/status', 'API\ProductStatusController');
     Route::apiResource('product/categories', 'API\ProductCategoryController');

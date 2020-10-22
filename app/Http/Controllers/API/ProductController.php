@@ -46,8 +46,7 @@ class ProductController extends Controller
         $products->load([
           'status',
           'product_images',
-          'product_variations.product_variation_type',
-          'product_variations.stocks'
+          'product_variations.product_variation_type'
         ]);
 
         return ProductResource::collection($products);

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\ProductVariationType;
 use App\Models\Traits\CanBeScoped;
 use Laravel\Scout\Searchable;
-use App\Models\ProductStock;
 use App\Models\Product;
 
 class ProductVariation extends Model
