@@ -3,7 +3,6 @@
 namespace Tests\Unit\ProductVariation;
 
 use App\Models\Product;
-use App\Models\ProductStock;
 use App\Models\ProductVariation;
 use App\Models\ProductVariationType;
 use Tests\TestCase;
@@ -39,27 +38,5 @@ class ProductVariationTest extends TestCase
 
         $this->assertInstanceOf(Product::class, $product_variation->product);
         $this->assertEquals($product_variation->product()->count(), 1);
-    }
-
-    /**
-     * check stocks and count stocks
-     *
-     * @return void
-     */
-    public function test_check_stock_and_count_stocks()
-    {
-        $product_variation = factory(ProductVariation::class)->create();
-        $stock1 = factory(ProductStock::class)->create([
-            'product_variation_id' => $product_variation->id,
-            'quantity' => 10
-        ]);
-        $stock2 = factory(ProductStock::class)->create([
-            'product_variation_id' => $product_variation->id,
-            'quantity' => 10
-        ]);
-
-        $all_stocks = $stock1->quantity + $stock2->quantity;
-        $this->assertTrue($product_variation->count_stocks() == $all_stocks);
-        $this->assertEquals($product_variation->stocks()->count(), 2);
     }
 }

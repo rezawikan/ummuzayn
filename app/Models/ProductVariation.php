@@ -51,30 +51,6 @@ class ProductVariation extends Model
     }
 
     /**
-     * Get the stocks for the product variation.
-     */
-    public function stocks()
-    {
-        return $this->hasMany(ProductStock::class);
-    }
-
-    /**
-     * Get the number of stocks for the product variation.
-     */
-    public function count_stocks()
-    {
-        return $this->stocks->sum('quantity');
-    }
-
-    /**
-     * compare stock.
-     */
-    public function compare_stocks()
-    {
-        return $this->count_stocks() == $this->stock;
-    }
-
-    /**
      * Get the product variation type for the product variation.
      */
     public function product_variation_type()
