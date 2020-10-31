@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\ProductVariationType;
 use App\Models\Traits\CanBeScoped;
-use Laravel\Scout\Searchable;
 use App\Models\Product;
 
 class ProductVariation extends Model
 {
-    use CanBeScoped, Searchable;
+    use CanBeScoped;
     
     /**
      * The attributes that are mass assignable.
@@ -20,16 +19,6 @@ class ProductVariation extends Model
     protected $fillable = [
       'product_id', 'product_variation_type_id', 'variation_name', 'price', 'base_price', 'weight', 'orderable', 'stock'
     ];
-
-    /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'product_variations_index';
-    }
 
     /**
    * Get the user's full name.

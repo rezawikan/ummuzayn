@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\CanBeScoped;
-use Laravel\Scout\Searchable;
 use App\Models\Product;
 
 class ProductImage extends Model
 {
-    use CanBeScoped, Searchable;
+    use CanBeScoped;
     
     /**
      * The attributes that are mass assignable.
@@ -19,16 +18,6 @@ class ProductImage extends Model
     protected $fillable = [
       'product_id', 'size', 'location', 'format'
     ];
-
-    /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'product_images_index';
-    }
 
     /**
      * Get the product for the image.

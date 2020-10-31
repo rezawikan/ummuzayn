@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\CanBeOrderable;
 use App\Models\Traits\CanBeScoped;
 use App\Models\CustomerAddress;
-use Laravel\Scout\Searchable;
 use App\Models\CustomerType;
+use App\Models\ProductVariation;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -15,7 +15,7 @@ use App\Notifications\ForgotPasswordNotification;
 
 class Customer extends Authenticatable implements JWTSubject
 {
-    use Notifiable, CanBeScoped, CanBeOrderable, Searchable;
+    use Notifiable, CanBeScoped, CanBeOrderable;
     
     /**
      * The attributes that are mass assignable.
@@ -49,13 +49,16 @@ class Customer extends Authenticatable implements JWTSubject
     }
 
     /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
+    * Get all cart from customer
+    *
+    * @param type
+    * @return void
+    */
+    public function cart()
     {
-        return 'customers_index';
+        return $this->belongsToMany(ProductVariation::class, 'cart_customers')
+                    ->withPivot('quantity')
+                    ->withTimestamps();
     }
 
     /**

@@ -4,14 +4,13 @@ namespace App\Models;
 
 use App\Models\City;
 use App\Models\Subdistrict;
-use Laravel\Scout\Searchable;
 use App\Models\Traits\CanBeScoped;
 use App\Models\Traits\CanBeOrderable;
 use Illuminate\Database\Eloquent\Model;
 
 class Province extends Model
 {
-    use CanBeScoped, CanBeOrderable, Searchable;
+    use CanBeScoped, CanBeOrderable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,16 +20,6 @@ class Province extends Model
     protected $fillable = [
         'name'
     ];
-
-    /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'provinces_index';
-    }
 
     /**
     * check the province has cities.

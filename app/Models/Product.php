@@ -7,12 +7,11 @@ use App\Models\Traits\CanBeOrderable;
 use App\Models\Traits\CanBeScoped;
 use App\Models\ProductVariation;
 use App\Models\ProductStatus;
-use Laravel\Scout\Searchable;
 use App\Models\ProductImage;
 
 class Product extends Model
 {
-    use CanBeScoped, CanBeOrderable, Searchable;
+    use CanBeScoped, CanBeOrderable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,16 +21,6 @@ class Product extends Model
     protected $fillable = [
       'product_category_id', 'name', 'description', 'status_id'
     ];
-
-    /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'products_index';
-    }
 
     /**
      * Get the status for the product.

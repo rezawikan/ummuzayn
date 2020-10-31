@@ -4,14 +4,13 @@ namespace App\Models;
 
 use App\Models\City;
 use App\Models\Customer;
-use Laravel\Scout\Searchable;
 use App\Models\Traits\CanBeScoped;
 use App\Models\Traits\CanBeOrderable;
 use Illuminate\Database\Eloquent\Model;
 
 class Subdistrict extends Model
 {
-    use CanBeScoped, CanBeOrderable, Searchable;
+    use CanBeScoped, CanBeOrderable;
     /**
      * The attributes that are mass assignable.
      *
@@ -21,16 +20,6 @@ class Subdistrict extends Model
       'city_id',
       'name'
     ];
-
-    /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'subdistricts_index';
-    }
 
     /**
     * Get the city that owns the subdistrict.

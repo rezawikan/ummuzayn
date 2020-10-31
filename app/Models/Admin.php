@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Laravel\Scout\Searchable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +11,7 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 
 class Admin extends Authenticatable implements JWTSubject, CanResetPassword
 {
-    use Searchable, Notifiable;
+    use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -21,16 +20,6 @@ class Admin extends Authenticatable implements JWTSubject, CanResetPassword
     protected $fillable = [
         'name', 'email', 'password',
     ];
-
-    /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'admins_index';
-    }
 
     /**
      * The attributes that should be hidden for arrays.

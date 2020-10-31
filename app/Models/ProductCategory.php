@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Product;
-use Laravel\Scout\Searchable;
 use App\Models\Traits\CanBeScoped;
 use App\Models\Traits\IsParent;
 use App\Models\Traits\CanBeOrderable;
@@ -11,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductCategory extends Model
 {
-    use CanBeScoped, IsParent, CanBeOrderable, Searchable;
+    use CanBeScoped, IsParent, CanBeOrderable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,16 +20,6 @@ class ProductCategory extends Model
     protected $fillable = [
         'parent_id', 'name', 'slug'
     ];
-
-    /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'product_categories_index';
-    }
 
     /**
      * Get the children for the product category.

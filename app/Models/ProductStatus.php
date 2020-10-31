@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\CanBeScoped;
-use Laravel\Scout\Searchable;
 use App\Models\Product;
 
 class ProductStatus extends Model
 {
-    use CanBeScoped, Searchable;
+    use CanBeScoped;
   
     /**
      * The attributes that are mass assignable.
@@ -19,16 +18,6 @@ class ProductStatus extends Model
     protected $fillable = [
       'status', 'slug'
     ];
-
-    /**
-     * Get the index name for the model.
-     *
-     * @return string
-     */
-    public function searchableAs()
-    {
-        return 'product_status_index';
-    }
 
     /**
      * Get the products for the product status.
