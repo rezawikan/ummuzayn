@@ -14,7 +14,7 @@ class CreateMarketplaceFeesTable extends Migration
     public function up()
     {
         Schema::create('marketplace_fees', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug');
             $table->double('percent'); // in percent

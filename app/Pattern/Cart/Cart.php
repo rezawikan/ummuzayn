@@ -98,6 +98,9 @@ class Cart
             'MarketplaceFee' => $this->getMarketplaceFeeAmount($request),
             'subTotalWithFee' => $this->subTotalWithRequest($request),
             'baseProfitWithFee' => $this->baseProfitWithFee($request),
+            'discount' => $this->getDiscount($request),
+            'totalProfit' => $this->baseProfitWithFee($request) - $this->getDiscount($request),
+            'total' => $this->subTotalWithRequest($request) - $this->getDiscount($request),
       ];
     }
 
@@ -213,7 +216,6 @@ class Cart
         return $this->subTotalWithRequest($request) - $this->subTotal('base_price');
     }
 
-
     /**
      * Check exsisting items are change
      *
@@ -235,6 +237,23 @@ class Cart
         if ($request->has('marketplaceFeeID')) {
             if (!is_null($detail = $this->getMarketPlaceFee($request->marketplaceFeeID))) {
                 return round($this->subTotal() * ($detail->percent /100));
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get discount
+     *
+    * @param \Illuminate\Http\Request $request
+     * @return integer
+     */
+    public function getDiscount(Request $request)
+    {
+        if ($request->has('discount')) {
+            if ($request->discount != 0) {
+                return (int) $request->discount;
             }
         }
 
