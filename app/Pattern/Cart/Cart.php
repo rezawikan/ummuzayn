@@ -4,7 +4,9 @@ namespace App\Pattern\Cart;
 
 use App\Pattern\Cart\ConversionWeight;
 use App\Models\Customer;
+use App\Models\MarketplaceFee;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
 
 class Cart
 {
@@ -101,15 +103,73 @@ class Cart
     /**
      * Check total amount price according with quantity
      *
-     * @return Integer
+     * @param string $price
+     * @return integer
      */
-    protected function subTotal($price = "price")
+    protected function subTotal($price = 'price')
     {
         $subtotal = $this->customer->cart->sum(function ($product) use ($price) {
             return $product->{$price} * $product->pivot->quantity;
         });
 
         return $subtotal;
+    }
+
+    /**
+     * Get marketplace fee
+     *
+     * @param integer $marketplaceFeeID
+     * @return Integer
+     */
+    protected function getMarketPlaceFee($marketplaceFeeID)
+    {
+        if (!empty($marketplaceFeeID)) {
+            return MarketplaceFee::find($marketplaceFeeID);
+        }
+
+        return null;
+    }
+
+    /**
+     * Check total amount price according with quantity and request
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return Integer
+     */
+    protected function subTotalWithRequest(Request $request)
+    {
+        $subtotal = $this->subTotal();
+        $keys = collect($request->all())->keys();
+
+        foreach ($keys as $value) {
+            if ($value == 'marketplaceFeeID') {
+                if (!is_null($fee = $this->getMarketPlaceFee($request->{$value}))) {
+                    $subtotal = $subtotal - ($subtotal * ($fee->percent / 100));
+                }
+            }
+        }
+        return $subtotal;
+    }
+
+    /**
+     * it check has marketplace
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return boolean
+     */
+    protected function hasMarketplaceFee(Request $request)
+    {
+        $keys = collect($request->all())->keys();
+
+        foreach ($keys as $value) {
+            if ($value == 'marketplaceFeeID') {
+                if (!is_null($fee = $this->getMarketPlaceFee($request->{$value}))) {
+                    return $fee->percent > 0 ? true : false;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -134,6 +194,17 @@ class Cart
     protected function baseProfit()
     {
         return $this->subTotal() - $this->subTotal('base_price');
+    }
+
+    /**
+     * Check total numbers of weight according with quantity
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return integer
+     */
+    protected function baseProfitWithFee(Request $request)
+    {
+        return $this->subTotalWithRequest($request) - $this->subTotal('base_price');
     }
 
 
@@ -178,14 +249,17 @@ class Cart
         return 0;
     }
 
-    public function summary()
+    public function summary(Request $request)
     {
         return [
-        'empty' => $this->isEmpty(),
-        'weight' => $this->totalWeight(),
-        'subtotal' => $this->subTotal(),
-        'changed' => $this->hasChanged(),
-        'baseProfit' => $this->baseProfit()
+            'empty' => $this->isEmpty(),
+            'changed' => $this->hasChanged(),
+            'hasMarketplaceFee' => $this->hasMarketplaceFee($request),
+            'weight' => $this->totalWeight(),
+            'subTotal' => $this->subTotal(),
+            'baseProfit' => $this->baseProfit(),
+            'subTotalWithFee' => $this->subTotalWithRequest($request),
+            'baseProfitWithFee' => $this->baseProfitWithFee($request)
       ];
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Resources\API\Cart\CartResource;
 use App\Http\Resources\API\Cart\CartIndexResource;
 use App\Http\Requests\CartStoreRequest;
 use App\Http\Requests\CartUpdateRequest;
+use App\Http\Requests\CartShowRequest;
 use App\Models\ProductVariation;
 use App\Http\Resources\API\Cart\CartProductVariationResource;
 
@@ -33,7 +34,7 @@ class CartController extends Controller
      * @param  \App\Http\Requests\CartStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CartStoreRequest $request)
     {
         $cart = new Cart($request->customer_id);
         $cart->add($request->products);
@@ -54,14 +55,14 @@ class CartController extends Controller
      * @param  \App\Models\Customer $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Customer $customer)
+    public function show(CartShowRequest $request, Customer $customer)
     {
         $cart = new Cart($customer);
         $cart->sync();
         $cart->customer->load(['cart.product', 'cart.product_variation_type']);
         
         return (new CartResource($cart->customer))->additional([
-          'meta' => $cart->summary()
+          'meta' => $cart->summary($request)
         ]);
     }
 

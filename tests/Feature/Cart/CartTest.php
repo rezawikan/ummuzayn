@@ -5,6 +5,7 @@ namespace Tests\Feature\Cart;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\ProductVariation;
+use App\Models\MarketplaceFee;
 use App\Models\Admin;
 use App\Pattern\Cart\Cart;
 use App\Models\Customer;
@@ -263,5 +264,122 @@ class CartTest extends TestCase
         ->assertJsonFragment([
             'quantity' => 3
         ]);
+    }
+
+    /**
+     * It return cart with specific customer using marketplace fee
+     *
+     * @return void
+     */
+    public function test_it_return_cart_with_specific_customer_with_marketplace_fee()
+    {
+        $admin = factory(Admin::class)->create();
+        $customer = factory(Customer::class)->create();
+
+        $product_variations = factory(ProductVariation::class, 5)->create([
+            'product_variation_type_id' => null,
+            'base_price' => 1000,
+            'price' => 5000,
+            'stock' => 10
+        ]);
+
+        $marketplace_fee = factory(MarketplaceFee::class)->create([
+            'percent' => 2
+        ]);
+
+        foreach ($product_variations as $variation) {
+            $this->jsonAs($admin, 'POST', 'api/cart', [
+                'customer_id' => $customer->id,
+                'products' => [
+                    [
+                        'id' => $variation->id,
+                        'quantity' => 1
+                    ]
+                ]
+            ]);
+        }
+
+        $this->jsonAs($admin, 'GET', 'api/cart/'.$customer->id, ['marketplaceFeeID' => $marketplace_fee->id ])
+        ->assertJsonStructure([
+            'data' => [
+                'products' => [
+                    [
+                        'id',
+                        'product_id',
+                        'product_variation_type_id',
+                        'variation_name',
+                        'weight',
+                        'price',
+                        'stock',
+                        'orderable',
+                        'product',
+                        'product_variation_type',
+                        'quantity',
+                        'total',
+                        'base_total',
+                    ]
+                ]
+            ]
+        ])
+        ->assertJsonCount(5, 'data.products')
+        ->assertJsonFragment([
+            'baseProfitWithFee' => 19500
+        ])
+        ->assertStatus(200);
+    }
+
+    /**
+     * It return cart with specific customer using wrong marketplace fee id
+     *
+     * @return void
+     */
+    public function test_it_return_cart_with_specific_customer_with_wrong_marketplace_fee()
+    {
+        $admin = factory(Admin::class)->create();
+        $customer = factory(Customer::class)->create();
+
+        $product_variations = factory(ProductVariation::class, 5)->create([
+            'product_variation_type_id' => null,
+            'base_price' => 1000,
+            'price' => 5000,
+            'stock' => 10
+        ]);
+
+        foreach ($product_variations as $variation) {
+            $this->jsonAs($admin, 'POST', 'api/cart', [
+                'customer_id' => $customer->id,
+                'products' => [
+                    [
+                        'id' => $variation->id,
+                        'quantity' => 1
+                    ]
+                ]
+            ]);
+        }
+
+        $this->jsonAs($admin, 'GET', 'api/cart/'.$customer->id, ['marketplaceFeeID' => null ])
+        ->assertJsonStructure([
+            'data' => [
+                'products' => [
+                    [
+                        'id',
+                        'product_id',
+                        'product_variation_type_id',
+                        'variation_name',
+                        'weight',
+                        'price',
+                        'stock',
+                        'orderable',
+                        'product',
+                        'product_variation_type',
+                        'quantity',
+                        'total',
+                        'base_total',
+                    ]
+                ]
+            ]
+        ])
+        ->assertJsonCount(5, 'data.products')
+        ->assertStatus(200);
     }
 }
