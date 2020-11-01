@@ -81,11 +81,32 @@ class Cart
     }
 
     /**
+     * Get summary
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return Array
+     */
+    public function summary(Request $request)
+    {
+        return [
+            'empty' => $this->isEmpty(),
+            'changed' => $this->hasChanged(),
+            'hasMarketplaceFee' => $this->hasMarketplaceFee($request),
+            'weight' => $this->totalWeight(),
+            'subTotal' => $this->subTotal(),
+            'baseProfit' => $this->baseProfit(),
+            'MarketplaceFee' => $this->getMarketplaceFeeAmount($request),
+            'subTotalWithFee' => $this->subTotalWithRequest($request),
+            'baseProfitWithFee' => $this->baseProfitWithFee($request),
+      ];
+    }
+
+    /**
      * Check some existing item in the cart
      *
      * @return Boolean
      */
-    protected function isEmpty()
+    public function isEmpty()
     {
         if (count($this->customer->cart) != 0) {
             $map = collect($this->customer->cart)->map(function ($cart) {
@@ -106,7 +127,7 @@ class Cart
      * @param string $price
      * @return integer
      */
-    protected function subTotal($price = 'price')
+    public function subTotal($price = 'price')
     {
         $subtotal = $this->customer->cart->sum(function ($product) use ($price) {
             return $product->{$price} * $product->pivot->quantity;
@@ -116,27 +137,12 @@ class Cart
     }
 
     /**
-     * Get marketplace fee
-     *
-     * @param integer $marketplaceFeeID
-     * @return Integer
-     */
-    protected function getMarketPlaceFee($marketplaceFeeID)
-    {
-        if (!empty($marketplaceFeeID)) {
-            return MarketplaceFee::find($marketplaceFeeID);
-        }
-
-        return null;
-    }
-
-    /**
      * Check total amount price according with quantity and request
      *
      * @param \Illuminate\Http\Request $request
      * @return Integer
      */
-    protected function subTotalWithRequest(Request $request)
+    public function subTotalWithRequest(Request $request)
     {
         $subtotal = $this->subTotal();
         $keys = collect($request->all())->keys();
@@ -157,7 +163,7 @@ class Cart
      * @param \Illuminate\Http\Request $request
      * @return boolean
      */
-    protected function hasMarketplaceFee(Request $request)
+    public function hasMarketplaceFee(Request $request)
     {
         $keys = collect($request->all())->keys();
 
@@ -177,7 +183,7 @@ class Cart
      *
      * @return \App\Pattern\Cart\ConversionWeight
      */
-    protected function totalWeight()
+    public function totalWeight()
     {
         $weight = $this->customer->cart->sum(function ($product) {
             return $product->weight * $product->pivot->quantity;
@@ -191,7 +197,7 @@ class Cart
      *
      * @return \App\Pattern\Cart\ConversionWeight
      */
-    protected function baseProfit()
+    public function baseProfit()
     {
         return $this->subTotal() - $this->subTotal('base_price');
     }
@@ -202,7 +208,7 @@ class Cart
      * @param \Illuminate\Http\Request $request
      * @return integer
      */
-    protected function baseProfitWithFee(Request $request)
+    public function baseProfitWithFee(Request $request)
     {
         return $this->subTotalWithRequest($request) - $this->subTotal('base_price');
     }
@@ -213,12 +219,43 @@ class Cart
      *
      * @return \App\Pattern\Cart\ConversionWeight
      */
-    protected function hasChanged()
+    public function hasChanged()
     {
         return $this->changed;
     }
 
-    
+    /**
+     * Get marketplace fee amount
+     *
+    * @param \Illuminate\Http\Request $request
+     * @return integer
+     */
+    public function getMarketplaceFeeAmount(Request $request)
+    {
+        if ($request->has('marketplaceFeeID')) {
+            if (!is_null($detail = $this->getMarketPlaceFee($request->marketplaceFeeID))) {
+                return round($this->subTotal() * ($detail->percent /100));
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get marketplace fee
+     *
+     * @param integer $marketplaceFeeID
+     * @return Integer
+     */
+    protected function getMarketPlaceFee($marketplaceFeeID)
+    {
+        if (!empty($marketplaceFeeID)) {
+            return MarketplaceFee::find($marketplaceFeeID);
+        }
+
+        return null;
+    }
+
     /**
      * Convert request to different format (set id as a key)
      *
@@ -247,19 +284,5 @@ class Cart
         }
 
         return 0;
-    }
-
-    public function summary(Request $request)
-    {
-        return [
-            'empty' => $this->isEmpty(),
-            'changed' => $this->hasChanged(),
-            'hasMarketplaceFee' => $this->hasMarketplaceFee($request),
-            'weight' => $this->totalWeight(),
-            'subTotal' => $this->subTotal(),
-            'baseProfit' => $this->baseProfit(),
-            'subTotalWithFee' => $this->subTotalWithRequest($request),
-            'baseProfitWithFee' => $this->baseProfitWithFee($request)
-      ];
     }
 }
