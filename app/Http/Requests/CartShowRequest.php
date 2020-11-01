@@ -24,7 +24,7 @@ class CartShowRequest extends FormRequest
     public function rules()
     {
         return [
-            'marketplaceFeeID' => 'required|numeric|exists:marketplace_fees,id',
+            'marketplaceFeeID' => 'nullable|numeric|exists:marketplace_fees,id',
             'discount' => 'nullable|numeric',
         ];
     }
