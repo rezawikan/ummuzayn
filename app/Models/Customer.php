@@ -49,16 +49,21 @@ class Customer extends Authenticatable implements JWTSubject
     }
 
     /**
-    * Get all cart from customer
-    *
-    * @param type
-    * @return void
-    */
+     * Get the cart that owns the customer.
+     */
     public function cart()
     {
         return $this->belongsToMany(ProductVariation::class, 'cart_customers')
                     ->withPivot('quantity')
                     ->withTimestamps();
+    }
+
+    /**
+     * Get the orders type that owns the customer.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
     /**

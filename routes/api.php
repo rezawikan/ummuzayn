@@ -63,4 +63,5 @@ Route::middleware(['auth:admins'])->group(function () {
     Route::apiResource('product-variation-types', 'API\ProductVariationTypeController');
     Route::apiResource('cart', 'API\CartController', ['parameters' => ['cart' => 'customer']])->except(['destroy']);
     Route::delete('cart/{customer}/{productVariation}', 'API\CartController@destroy')->name('cart.destroy');
+    Route::apiResource('order', 'API\OrderController');
 });

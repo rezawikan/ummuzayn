@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CartShowRequest extends FormRequest
+class OrderStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,10 @@ class CartShowRequest extends FormRequest
     public function rules()
     {
         return [
-            'marketplace_fee_id' => 'nullable|numeric|exists:marketplace_fees,id',
-            'discount' => 'nullable|numeric',
+            'customer_id' => 'required|exists:customers,id',
+            'status_id' => 'required|exists:order_statuses,id',
+            'marketplace_fee_id' => 'nullable|exists:marketplace_fees,id',
+            'discount' => 'nullable|numeric'
         ];
     }
 }

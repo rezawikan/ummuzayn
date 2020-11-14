@@ -89,17 +89,18 @@ class Cart
     public function summary(Request $request)
     {
         return [
-            'empty' => $this->isEmpty(),
+            'IsAnyEmpty' => $this->isEmpty(),
             'changed' => $this->hasChanged(),
             'hasMarketplaceFee' => $this->hasMarketplaceFee($request),
             'weight' => $this->totalWeight(),
-            'subTotal' => $this->subTotal(),
-            'baseProfit' => $this->baseProfit(),
-            'MarketplaceFee' => $this->getMarketplaceFeeAmount($request),
-            'subTotalWithFee' => $this->subTotalWithRequest($request),
-            'baseProfitWithFee' => $this->baseProfitWithFee($request),
+            'subtotal' => $this->subTotal(),
+            'base_subtotal' => $this->subTotal('base_price'),
+            // 'base_profit' => $this->baseProfit(),
+            'marketplace_fee' => $this->getMarketplaceFeeAmount($request),
+            // 'subtotal_with_fee' => $this->subTotalWithRequest($request),
+            // 'base_profit_with_fee' => $this->baseProfitWithFee($request),
             'discount' => $this->getDiscount($request),
-            'totalProfit' => $this->baseProfitWithFee($request) - $this->getDiscount($request),
+            'total_profit' => $this->baseProfitWithFee($request) - $this->getDiscount($request),
             'total' => $this->subTotalWithRequest($request) - $this->getDiscount($request),
       ];
     }
@@ -151,7 +152,7 @@ class Cart
         $keys = collect($request->all())->keys();
 
         foreach ($keys as $value) {
-            if ($value == 'marketplaceFeeID') {
+            if ($value == 'marketplace_fee_id') {
                 if (!is_null($fee = $this->getMarketPlaceFee($request->{$value}))) {
                     $subtotal = $subtotal - ($subtotal * ($fee->percent / 100));
                 }
@@ -171,7 +172,7 @@ class Cart
         $keys = collect($request->all())->keys();
 
         foreach ($keys as $value) {
-            if ($value == 'marketplaceFeeID') {
+            if ($value == 'marketplace_fee_id') {
                 if (!is_null($fee = $this->getMarketPlaceFee($request->{$value}))) {
                     return $fee->percent > 0 ? true : false;
                 }
@@ -234,8 +235,8 @@ class Cart
      */
     public function getMarketplaceFeeAmount(Request $request)
     {
-        if ($request->has('marketplaceFeeID')) {
-            if (!is_null($detail = $this->getMarketPlaceFee($request->marketplaceFeeID))) {
+        if ($request->has('marketplace_fee_id')) {
+            if (!is_null($detail = $this->getMarketPlaceFee($request->marketplace_fee_id))) {
                 return round($this->subTotal() * ($detail->percent /100));
             }
         }
@@ -263,13 +264,13 @@ class Cart
     /**
      * Get marketplace fee
      *
-     * @param integer $marketplaceFeeID
+     * @param integer $marketplace_fee_id
      * @return Integer
      */
-    protected function getMarketPlaceFee($marketplaceFeeID)
+    protected function getMarketPlaceFee($marketplace_fee_id)
     {
-        if (!empty($marketplaceFeeID)) {
-            return MarketplaceFee::find($marketplaceFeeID);
+        if (!empty($marketplace_fee_id)) {
+            return MarketplaceFee::find($marketplace_fee_id);
         }
 
         return null;
