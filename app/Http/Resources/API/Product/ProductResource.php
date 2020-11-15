@@ -20,11 +20,11 @@ class ProductResource extends JsonResource
         return [
           'id'  => $this->id,
           'product_category_id' => $this->product_category_id,
-          'status_id' => $this->status_id,
+          'product_status_id' => $this->product_status_id,
           'name'  => $this->name,
           'description' => $this->description,
           'has_variation_type' => $this->has_variation_type(),
-          'status' => new ProductStatusResource($this->whenLoaded('status')),
+          'status' => new ProductStatusResource($this->whenLoaded('product_status')),
           'product_images' => ProductImageResource::collection($this->whenLoaded('product_images')),
           'product_variations' => ProductVariationResource::collection($this->whenLoaded('product_variations'))
         ];

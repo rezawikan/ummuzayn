@@ -24,6 +24,6 @@ class ProductStatus extends Model
      */
     public function products()
     {
-        return $this->hasMany(Product::class, 'status_id');
+        return $this->hasMany(Product::class);
     }
 }

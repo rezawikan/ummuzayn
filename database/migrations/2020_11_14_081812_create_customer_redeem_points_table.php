@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class CreateCustomerRedeemPointsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,14 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('customer_redeem_points', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('customer_id')->index();
-            $table->unsignedBigInteger('order_status_id')->index();
-            $table->double('subtotal');
-            $table->double('base_subtotal');
-            $table->double('marketplace_fee');
-            $table->double('discount');
-            $table->double('total');
-            $table->double('total_profit');
+            $table->text('description');
             $table->double('point');
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('order_status_id')->references('id')->on('order_statuses');
         });
     }
 
@@ -38,6 +31,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('customer_redeem_points');
     }
 }

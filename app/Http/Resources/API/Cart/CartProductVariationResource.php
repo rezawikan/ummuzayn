@@ -16,7 +16,8 @@ class CartProductVariationResource extends JsonResource
     {
         return array_merge(parent::toArray($request), [
             'product' => new CartProductIndexResource($this->product),
-            'weight' =>  $this->weight * $this->pivot->quantity,
+            'weight' =>  $this->weight,
+            'point' => $this->point,
             'quantity' => $this->pivot->quantity,
             'total'    => $this->getTotal(),
             'base_total' => $this->getBaseTotal()

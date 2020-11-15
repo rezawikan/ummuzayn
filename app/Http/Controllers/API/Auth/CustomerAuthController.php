@@ -53,6 +53,7 @@ class CustomerAuthController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'customer_type_id' => $request->customer_type_id,
+            'customer_point_id' => $request->customer_point_id,
             'password' => Hash::make($request->password)
         ]);
     }

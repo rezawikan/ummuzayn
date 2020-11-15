@@ -21,11 +21,11 @@ class ProductTest extends TestCase
     {
         $status = factory(ProductStatus::class)->create();
         $product = factory(Product::class)->create([
-            'status_id' => $status->id
+            'product_status_id' => $status->id
         ]);
 
-        $this->assertEquals($product->status->id, $status->id);
-        $this->assertInstanceOf(ProductStatus::class, $product->status);
+        $this->assertEquals($product->product_status->id, $status->id);
+        $this->assertInstanceOf(ProductStatus::class, $product->product_status);
     }
 
     /**
@@ -42,7 +42,7 @@ class ProductTest extends TestCase
         ]);
 
         $this->assertTrue($product->has_variation_type());
-        $this->assertEquals($product->status()->count(), 1);
+        $this->assertEquals($product->product_status()->count(), 1);
     }
 
     /**

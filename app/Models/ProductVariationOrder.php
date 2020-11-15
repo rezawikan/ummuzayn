@@ -22,6 +22,7 @@ class ProductVariationOrder extends Model
         'price',
         'base_price',
         'weight',
+        'point',
         'quantity'
     ];
 

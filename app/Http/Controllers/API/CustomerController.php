@@ -59,6 +59,7 @@ class CustomerController extends Controller
         $customer = Customer::create(
             array_merge($request->only([
                 'customer_type_id',
+                'customer_point_id',
                 'name',
                 'email',
                 'phone'

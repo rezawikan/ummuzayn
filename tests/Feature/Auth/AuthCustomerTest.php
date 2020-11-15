@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Password;
+use App\Models\CustomerPoint;
 use App\Models\CustomerType;
 use App\Models\Customer;
 use App\Models\Admin;
@@ -112,12 +113,14 @@ class AuthCustomerTest extends TestCase
     {
         $admin = factory(Admin::class)->create();
         $type = factory(CustomerType::class)->create();
+        $point = factory(CustomerPoint::class)->create();
         $registered = $this->jsonAs($admin, 'POST', 'api/auth/register-user', [
             'name' => 'testing',
             'email' =>'testing@gmail.com',
             'password' => 'password',
             'phone' => 435345345,
-            'customer_type_id' => $type->id
+            'customer_type_id' => $type->id,
+            'customer_point_id' => $point->id
         ])->assertJsonStructure([
             'id',
             'name',

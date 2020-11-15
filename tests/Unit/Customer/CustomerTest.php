@@ -5,6 +5,7 @@ namespace Tests\Unit\Customer;
 use Tests\TestCase;
 use App\Models\Customer;
 use App\Models\CustomerType;
+use App\Models\CustomerPoint;
 use App\Models\CustomerAddress;
 
 class CustomerTest extends TestCase
@@ -69,5 +70,20 @@ class CustomerTest extends TestCase
         ]);
 
         $this->assertEquals(1, $customer->default_address()->count());
+    }
+
+    /**
+     * Customer has customer point
+     *
+     * @return void
+     */
+    public function test_it_has_a_customer_point()
+    {
+        $customer = factory(Customer::class)->create([
+          'customer_point_id' => factory(CustomerPoint::class)->create()->id
+        ]);
+
+        $this->assertEquals(1, $customer->point()->count());
+        $this->assertInstanceOf(CustomerPoint::class, $customer->point);
     }
 }

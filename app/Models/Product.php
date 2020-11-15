@@ -19,13 +19,13 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-      'product_category_id', 'name', 'description', 'status_id'
+      'product_category_id', 'product_status_id', 'name', 'description',
     ];
 
     /**
      * Get the status for the product.
      */
-    public function status()
+    public function product_status()
     {
         return $this->belongsTo(ProductStatus::class);
     }

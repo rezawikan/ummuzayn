@@ -45,12 +45,12 @@ class OrderTest extends TestCase
 
         $this->jsonAs($admin, 'POST', 'api/order', [
             'customer_id' => $customer->id,
-            'status_id' => $order_status->id
+            'order_status_id' => $order_status->id
         ])->assertStatus(200);
 
         $this->assertDatabaseHas('orders', [
             'customer_id' => $customer->id,
-            'status_id' => $order_status->id
+            'order_status_id' => $order_status->id
         ]);
     }
 
@@ -86,14 +86,14 @@ class OrderTest extends TestCase
 
         $this->jsonAs($admin, 'POST', 'api/order', [
             'customer_id' => $customer->id,
-            'status_id' => $order_status->id,
+            'order_status_id' => $order_status->id,
             'marketplace_fee_id' => $marketplace_fee->id,
             'discount' => 500
         ])->assertStatus(200);
 
         $this->assertDatabaseHas('orders', [
             'customer_id' => $customer->id,
-            'status_id' => $order_status->id,
+            'order_status_id' => $order_status->id,
             'discount' => 500
         ]);
     }

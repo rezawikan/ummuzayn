@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\CanBeOrderable;
 use App\Models\Traits\CanBeScoped;
 use App\Models\CustomerAddress;
+use App\Models\CustomerPoint;
 use App\Models\CustomerType;
 use App\Models\ProductVariation;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,7 +24,7 @@ class Customer extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'customer_type_id', 'name', 'email', 'phone', 'password'
+        'customer_type_id', 'customer_point_id', 'name', 'email', 'phone', 'password'
     ];
 
     // Rest omitted for brevity
@@ -72,6 +73,14 @@ class Customer extends Authenticatable implements JWTSubject
     public function type()
     {
         return $this->belongsTo(CustomerType::class, 'customer_type_id');
+    }
+
+    /**
+     * Get the customer point that owns the customer.
+     */
+    public function point()
+    {
+        return $this->belongsTo(CustomerPoint::class, 'customer_point_id');
     }
 
     /**

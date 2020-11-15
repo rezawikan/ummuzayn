@@ -26,7 +26,7 @@ class ProductTest extends TestCase
                 [
                     'id',
                     'product_category_id',
-                    'status_id',
+                    'product_status_id',
                     'name',
                     'description',
                     'has_variation_type',
@@ -70,7 +70,7 @@ class ProductTest extends TestCase
                 [
                     'id',
                     'product_category_id',
-                    'status_id',
+                    'product_status_id',
                     'name',
                     'description',
                     'has_variation_type',

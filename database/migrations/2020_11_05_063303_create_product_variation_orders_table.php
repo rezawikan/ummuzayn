@@ -24,6 +24,7 @@ class CreateProductVariationOrdersTable extends Migration
             $table->double('price');
             $table->double('base_price');
             $table->double('weight');
+            $table->double('point');
             $table->integer('quantity');
             $table->timestamps();
 

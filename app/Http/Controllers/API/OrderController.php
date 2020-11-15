@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\CustomerPointHistory;
 use App\Models\Customer;
 use App\Pattern\Cart\Cart;
 use App\Http\Controllers\Controller;
@@ -35,10 +36,12 @@ class OrderController extends Controller
             $customer = Customer::find($request->customer_id);
             $cartObject = new Cart($customer->id);
             $summaryOrder = $this->statusMerge($request, $cartObject);
-        
+
             $order = $customer->orders()->create($summaryOrder);
             $variations = $this->createOrderVariations($cartObject);
             $order->product_variation_orders()->createMany($variations);
+            $this->addPoints($order, $customer, $summaryOrder['point'], 'Purchase Points');
+        
             $customer->cart()->detach();
 
             DB::commit();
@@ -49,9 +52,32 @@ class OrderController extends Controller
     }
 
     /**
+    * Convert cart to order variations array
+    *
+    * @param  \App\Models\Order $order
+    * @param  \App\Models\customer $customer
+    * @param  Integer $point
+    * @param  String $description
+    * @return void
+    */
+    protected function addPoints($order, $customer, $point, $description)
+    {
+        $history = new CustomerPointHistory([
+            'customer_point_id' => $customer->point->id,
+            'point' => $point,
+            'description' => $description
+        ]);
+        
+        $order->customer_point_history()->save($history);
+        $customer->point()->update([
+            'total_points' => $customer->point->total_points + $point
+        ]);
+    }
+
+    /**
      * Convert cart to order variations array
      *
-     * @param  Array $data
+     * @param  /App/Pattern/Cart/Cart $cart
      * @return Array
      */
     protected function createOrderVariations($cart)
@@ -62,11 +88,12 @@ class OrderController extends Controller
                 'product_name' => $value->product->name,
                 'product_description' => $value->product->description,
                 'product_variation_type' => $value->product_variation_type->variation_type ?? null,
-                'product_variation_name' => $value->variation_name,
+                'product_variation_name' => $value->variation_name ?? null,
                 'weight' => $value->weight,
                 'quantity' => $value->pivot->quantity,
                 'price' => $value->price,
-                'base_price' => $value->base_price
+                'base_price' => $value->base_price,
+                'point' => $value->point,
             ];
         })->toArray();
     }
@@ -81,7 +108,7 @@ class OrderController extends Controller
     protected function statusMerge(Request $request, Cart $cart)
     {
         return array_merge([
-            'status_id' => $request->status_id
+            'order_status_id' => $request->order_status_id
         ], $cart->summary($request));
     }
 

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\OrderStatus;
 use App\Models\ProductVariationOrder;
+use App\Models\CustomerPointHistory;
 
 class Order extends Model
 {
@@ -15,13 +16,14 @@ class Order extends Model
      */
     protected $fillable = [
         'customer_id',
-        'status_id',
+        'order_status_id',
         'subtotal',
         'base_subtotal',
         'marketplace_fee',
         'discount',
         'total',
-        'total_profit'
+        'total_profit',
+        'point'
     ];
 
     /**
@@ -29,7 +31,7 @@ class Order extends Model
     */
     public function order_status()
     {
-        return $this->belongsTo(OrderStatus::class);
+        return $this->belongsTo(OrderStatus::class, 'order_status_id');
     }
 
     /**
@@ -46,5 +48,13 @@ class Order extends Model
     public function product_variation_orders()
     {
         return $this->hasMany(ProductVariationOrder::class);
+    }
+
+    /**
+     * Get the order's point history.
+     */
+    public function customer_point_history()
+    {
+        return $this->morphOne(CustomerPointHistory::class, 'cp_history');
     }
 }

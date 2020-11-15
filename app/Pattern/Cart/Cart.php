@@ -95,6 +95,7 @@ class Cart
             'weight' => $this->totalWeight(),
             'subtotal' => $this->subTotal(),
             'base_subtotal' => $this->subTotal('base_price'),
+            'point' => $this->totalPoint(),
             // 'base_profit' => $this->baseProfit(),
             'marketplace_fee' => $this->getMarketplaceFeeAmount($request),
             // 'subtotal_with_fee' => $this->subTotalWithRequest($request),
@@ -194,6 +195,20 @@ class Cart
         });
 
         return (new ConversionWeight($weight))->result();
+    }
+
+    /**
+     * Check total numbers of weight according with quantity
+     *
+     * @return \App\Pattern\Cart\ConversionWeight
+     */
+    public function totalPoint()
+    {
+        $points = $this->customer->cart->sum(function ($product) {
+            return $product->point * $product->pivot->quantity;
+        });
+
+        return $points;
     }
 
     /**

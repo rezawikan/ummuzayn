@@ -14,7 +14,8 @@ $factory->define(ProductVariation::class, function (Faker $faker) {
         'variation_name' => $faker->name,
         'price' => 100,
         'base_price' => 75,
-        'weight' => 1,
+        'weight' => 500, //gram
+        'point' => rand(1, 100),
         'orderable' => rand(1, 100),
         'stock' => rand(1, 100)
     ];

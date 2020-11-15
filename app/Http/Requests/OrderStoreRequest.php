@@ -25,7 +25,7 @@ class OrderStoreRequest extends FormRequest
     {
         return [
             'customer_id' => 'required|exists:customers,id',
-            'status_id' => 'required|exists:order_statuses,id',
+            'order_status_id' => 'required|exists:order_statuses,id',
             'marketplace_fee_id' => 'nullable|exists:marketplace_fees,id',
             'discount' => 'nullable|numeric'
         ];

@@ -4,6 +4,7 @@ namespace Tests\Feature\Customer;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\CustomerPoint;
 use App\Models\CustomerType;
 use App\Models\Customer;
 use App\Models\Admin;
@@ -92,6 +93,7 @@ class CustomerTest extends TestCase
         $admin = factory(Admin::class)->create();
         $this->jsonAs($admin, 'POST', 'api/customers', [
             'customer_type_id' => factory(CustomerType::class)->create()->id,
+            'customer_point_id' => factory(CustomerPoint::class)->create()->id,
             'name' => 'Dika',
             'email' => 'test@gmail.com',
             'phone' => '123456789',

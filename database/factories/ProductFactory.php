@@ -10,8 +10,8 @@ use Faker\Generator as Faker;
 $factory->define(Product::class, function (Faker $faker) {
     return [
         'product_category_id' => factory(ProductCategory::class)->create()->id,
-        'name' => $faker->name, 
-        'description' => $faker->name, 
-        'status_id' => factory(ProductStatus::class)->create()->id
+        'name' => $faker->name,
+        'description' => $faker->name,
+        'product_status_id' => factory(ProductStatus::class)->create()->id
     ];
 });

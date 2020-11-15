@@ -50,7 +50,7 @@ class ProductController extends Controller
         }
 
         $products->load([
-          'status',
+          'product_status',
           'product_images',
           'product_variations.product_variation_type'
         ]);
@@ -74,7 +74,7 @@ class ProductController extends Controller
                     'product_category_id',
                     'name',
                     'description',
-                    'status_id'
+                    'product_status_id'
                 ])
             );
 
@@ -126,7 +126,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $product->load([
-            'status',
+            'product_status',
             'product_images',
             'product_variations'
             ]);
@@ -151,7 +151,7 @@ class ProductController extends Controller
                 'product_category_id',
                 'name',
                 'description',
-                'status_id'
+                'product_status_id'
                 ])
             );
             

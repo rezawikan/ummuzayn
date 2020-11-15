@@ -17,7 +17,7 @@ class ProductVariation extends Model
      * @var array
      */
     protected $fillable = [
-      'product_id', 'product_variation_type_id', 'variation_name', 'price', 'base_price', 'weight', 'orderable', 'stock'
+      'product_id', 'product_variation_type_id', 'variation_name', 'price', 'base_price', 'point','weight', 'orderable', 'stock'
     ];
 
     /**

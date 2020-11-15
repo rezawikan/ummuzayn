@@ -4,11 +4,13 @@
 
 use App\Models\Customer;
 use App\Models\CustomerType;
+use App\Models\CustomerPoint;
 use Faker\Generator as Faker;
 
 $factory->define(Customer::class, function (Faker $faker) {
     return [
         'customer_type_id' => factory(CustomerType::class)->create()->id,
+        'customer_point_id' => factory(CustomerPoint::class)->create()->id,
         'name' => $faker->name,
         'email' => $faker->email,
         'phone' => $faker->phoneNumber,
